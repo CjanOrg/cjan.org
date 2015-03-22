@@ -1,9 +1,9 @@
 @extends('app')
 
 @section('content')
-<div class="container-fluid">
-	<div class="row-fluid">
-		<div class="col-md-10 col-md-offset-1">
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">Home</div>
 
@@ -61,6 +61,9 @@
 					test results are archived and shared with others. By archiving and sharing your test
 					results, other developers can quickly evaluate the compatibility of libraries against
 					JVM, build tool and operating system versions.</p>
+
+					<p><a href="{{ URL::to('/auth/register') }}">Register</a> to create a new user and use our plug-in with your build
+					tool to submit test results. The information </p>
 
 				</div>
 			</div>
