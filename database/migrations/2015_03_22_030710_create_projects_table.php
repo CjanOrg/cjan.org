@@ -12,7 +12,12 @@ class CreateProjectsTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+		$table->increments('id');
+		$table->string('name');
+		$table->string('group_id');
+		$table->string('artifact_id');
+		$table->string('url');
+		$table->timestamps();
 	}
 
 	/**
@@ -22,7 +27,7 @@ class CreateProjectsTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('projects');
 	}
 
 }
