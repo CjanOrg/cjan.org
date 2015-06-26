@@ -1,0 +1,35 @@
+<?php
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class AddProjectArtifactIdsTable extends Migration {
+
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('project_artifact_ids', function(Blueprint $table)
+		{
+			$table->increments('id');
+			$table->integer('project_group_ids_id')->unsigned();
+			$table->foreign('project_group_ids_id')->references('id')->table('project_group_ids');
+			$table->string('name', 255);
+			$table->timestamps();
+		});
+	}
+
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::drop('project_artifact_ids');
+	}
+
+}
