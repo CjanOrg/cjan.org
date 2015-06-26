@@ -15,8 +15,8 @@ class AddProjectArtifactIdsTable extends Migration {
 		Schema::create('project_artifact_ids', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('project_group_ids_id')->unsigned();
-			$table->foreign('project_group_ids_id')->references('id')->table('project_group_ids');
+			$table->integer('project_group_id_id')->unsigned();
+			$table->foreign('project_group_id_id')->references('id')->table('project_group_ids');
 			$table->string('name', 255)->index('project_artifact_ids_name_index');
 			$table->timestamps();
 		});

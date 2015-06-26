@@ -15,8 +15,8 @@ class AddProjectVersionsTable extends Migration {
 		Schema::create('project_versions', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('project_artifact_ids_id')->unsigned();
-			$table->foreign('project_artifact_ids_id')->references('id')->table('project_artifact_ids');
+			$table->integer('project_artifact_id_id')->unsigned();
+			$table->foreign('project_artifact_id_id')->references('id')->table('project_artifact_ids');
 			$table->string('name', 255)->index('project_versions_name_index');
 			$table->boolean('snapshot')->default(FALSE);
 			$table->timestamps();
