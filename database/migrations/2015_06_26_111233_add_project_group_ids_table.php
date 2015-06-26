@@ -15,7 +15,7 @@ class AddProjectGroupIdsTable extends Migration {
 		Schema::create('project_group_ids', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('name', 255)->unique();
+			$table->string('name', 255)->unique()->index('project_group_ids_name_index');
 			$table->timestamps();
 		});
 	}
