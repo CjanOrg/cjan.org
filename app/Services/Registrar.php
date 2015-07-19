@@ -1,6 +1,6 @@
-<?php namespace App\Services;
+<?php namespace CJAN\Services;
 
-use App\User;
+use CJAN\User;
 use Validator;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 

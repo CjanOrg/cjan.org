@@ -1,7 +1,7 @@
-<?php namespace App\Http\Controllers;
+<?php namespace CJAN\Http\Controllers;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use CJAN\Http\Requests;
+use CJAN\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 

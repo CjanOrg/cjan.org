@@ -1,4 +1,4 @@
-<?php namespace App\Events;
+<?php namespace CJAN\Events;
 
 abstract class Event {
 

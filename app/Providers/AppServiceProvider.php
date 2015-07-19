@@ -1,6 +1,8 @@
-<?php namespace App\Providers;
+<?php namespace CJAN\Providers;
 
 use Illuminate\Support\ServiceProvider;
+
+use DB;
 
 class AppServiceProvider extends ServiceProvider {
 
@@ -11,7 +13,11 @@ class AppServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		//
+		// Add support to SQLite foreign keys
+		// http://stackoverflow.com/questions/31228950/laravel-5-1-enable-sqlite-foreign-key-constraints
+		if (DB::connection() instanceof \Illuminate\Database\SQLiteConnection) {
+    		DB::statement(DB::raw('PRAGMA foreign_keys=1'));
+		}
 	}
 
 	/**
@@ -27,7 +33,7 @@ class AppServiceProvider extends ServiceProvider {
 	{
 		$this->app->bind(
 			'Illuminate\Contracts\Auth\Registrar',
-			'App\Services\Registrar'
+			'CJAN\Services\Registrar'
 		);
 	}
 
