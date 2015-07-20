@@ -28,7 +28,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">CJAN</a>
+				<a class="navbar-brand">CJAN</a>
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -61,6 +61,45 @@
 			</div>
 		</div>
 	</nav>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="btn-toolbar" role="toolbar" aria-label="project-letters">
+					<div class="btn-group" role="group" aria-label="project-letter-a">
+						<a class="btn btn-default" href="{{ URL::to('/projects?letter=a') }}">A</a>
+						<a class="btn btn-default" href="{{ URL::to('/projects?letter=b') }}">B</a>
+						<a class="btn btn-default" href="{{ URL::to('/projects?letter=c') }}">C</a>
+						<a class="btn btn-default" href="{{ URL::to('/projects?letter=d') }}">D</a>
+						<a class="btn btn-default" href="{{ URL::to('/projects?letter=e') }}">E</a>
+						<a class="btn btn-default" href="{{ URL::to('/projects?letter=f') }}">F</a>
+						<a class="btn btn-default" href="{{ URL::to('/projects?letter=g') }}">G</a>
+						<a class="btn btn-default" href="{{ URL::to('/projects?letter=h') }}">H</a>
+						<a class="btn btn-default" href="{{ URL::to('/projects?letter=i') }}">I</a>
+						<a class="btn btn-default" href="{{ URL::to('/projects?letter=j') }}">J</a>
+						<a class="btn btn-default" href="{{ URL::to('/projects?letter=k') }}">K</a>
+						<a class="btn btn-default" href="{{ URL::to('/projects?letter=l') }}">L</a>
+						<a class="btn btn-default" href="{{ URL::to('/projects?letter=m') }}">M</a>
+						<a class="btn btn-default" href="{{ URL::to('/projects?letter=n') }}">N</a>
+						<a class="btn btn-default" href="{{ URL::to('/projects?letter=o') }}">O</a>
+						<a class="btn btn-default" href="{{ URL::to('/projects?letter=p') }}">P</a>
+						<a class="btn btn-default" href="{{ URL::to('/projects?letter=q') }}">Q</a>
+						<a class="btn btn-default" href="{{ URL::to('/projects?letter=r') }}">R</a>
+						<a class="btn btn-default" href="{{ URL::to('/projects?letter=s') }}">S</a>
+						<a class="btn btn-default" href="{{ URL::to('/projects?letter=t') }}">T</a>
+						<a class="btn btn-default" href="{{ URL::to('/projects?letter=u') }}">U</a>
+						<a class="btn btn-default" href="{{ URL::to('/projects?letter=v') }}">V</a>
+						<a class="btn btn-default" href="{{ URL::to('/projects?letter=w') }}">W</a>
+						<a class="btn btn-default" href="{{ URL::to('/projects?letter=x') }}">X</a>
+						<a class="btn btn-default" href="{{ URL::to('/projects?letter=y') }}">Y</a>
+						<a class="btn btn-default" href="{{ URL::to('/projects?letter=z') }}">Z</a>
+						<a class="btn btn-default" href="{{ URL::to('/projects?letter=0-9') }}">0-9</a>
+					</div>
+				</div>
+				<hr/>
+			</div>
+		</div>
+	</div>
 
 	@yield('content')
 

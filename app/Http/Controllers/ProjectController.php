@@ -18,10 +18,14 @@ class ProjectController extends Controller {
 	{
 		$letter = $request->input('letter');
 		if (!isset($letter) || !$letter) {
-			//return redirect('/')->withInput();
+			return view('projects');
 		}
 		$projects = $projectGateway->findProjectsByLetter($letter);
-		return view('projects');
+		$data = array(
+			'letter' => strtoupper($letter),
+			'projects' => $projects
+		);
+		return view('projects_by_letter', $data);
 	}
 
 	/**
