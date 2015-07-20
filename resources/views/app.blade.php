@@ -38,7 +38,11 @@
 					@else
 					<li><a href="{{ url('/') }}">Home</a></li>
 					@endif
+					@if (Request::is('projects'))
+					<li class='active'><a href="{{ url('/projects') }}">Projects</a></li>
+					@else
 					<li><a href="{{ url('/projects') }}">Projects</a></li>
+					@endif
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">

@@ -3,6 +3,8 @@
 use CJAN\Http\Requests;
 use CJAN\Http\Controllers\Controller;
 
+use CJAN\Gateways\ProjectGateway;
+
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller {
@@ -12,9 +14,14 @@ class ProjectController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index(ProjectGateway $projectGateway, Request $request)
 	{
-		//
+		$letter = $request->input('letter');
+		if (!isset($letter) || !$letter) {
+			//return redirect('/')->withInput();
+		}
+		$projects = $projectGateway->findProjectsByLetter($letter);
+		return view('projects');
 	}
 
 	/**
