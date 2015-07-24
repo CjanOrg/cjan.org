@@ -1,10 +1,12 @@
 <?php namespace CJAN\Gateways;
 
+use CJAN\Repositories\ProjectRepository;
+
 class ProjectGateway {
 
 	protected $projectRepository;
 
-	public __construct(ProjectRepository $projectRepository)
+	public function __construct(ProjectRepository $projectRepository)
 	{
 		$this->projectRepository = $projectRepository;
 	}
