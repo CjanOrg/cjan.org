@@ -99,12 +99,14 @@
 				<br/>
 			</div>
 			<div class='col-md-2'>
-		      <div class="input-group">
-			      <input type="text" class="form-control" placeholder="Search for...">
-		        	<span class="input-group-btn">
-			        <button class="btn btn-default" type="button">Go!</button>
-		        </span>
-		      </div><!-- /input-group -->
+			  <form action="{{ url('/projects/search') }}" class='form form-inline' role="search" method="get">
+		        <div class="input-group">
+			      <input name="q" type="text" class="form-control" placeholder="Search">
+		          <span class="input-group-btn">
+		            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search color-white" aria-label="Go"></i></button>
+                  </span>
+  		        </div><!-- /input-group -->
+		      </form>
 		    </div><!-- /.col-lg-6 -->
 		</div>
 	</div>
