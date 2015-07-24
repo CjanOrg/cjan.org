@@ -96,7 +96,7 @@
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=0-9') }}">0-9</a>
 					</div>
 				</div>
-				<hr/>
+				<br/>
 			</div>
 		</div>
 	</div>
