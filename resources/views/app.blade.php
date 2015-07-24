@@ -64,7 +64,7 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-10">
 				<div class="btn-toolbar" role="toolbar" aria-label="project-letters">
 					<div class="btn-group" role="group" aria-label="project-letter-a">
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=a') }}">A</a>
@@ -98,6 +98,14 @@
 				</div>
 				<br/>
 			</div>
+			<div class='col-md-2'>
+		      <div class="input-group">
+			      <input type="text" class="form-control" placeholder="Search for...">
+		        	<span class="input-group-btn">
+			        <button class="btn btn-default" type="button">Go!</button>
+		        </span>
+		      </div><!-- /input-group -->
+		    </div><!-- /.col-lg-6 -->
 		</div>
 	</div>
 

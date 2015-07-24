@@ -8,6 +8,8 @@
 				<div class="panel-heading">Home</div>
 
 				<div class="panel-body">
+					<h4>Welcome to the Comprehensive Java Archive Network</h4>
+
 					<p>The CJAN project is a placeholder for tests of Java projects. It aims at providing
 					better quality, less bugs in production, tests for alpha/beta/RC versions and history
 					of compatibility for Java projects.</p>
