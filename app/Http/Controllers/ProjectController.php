@@ -1,6 +1,7 @@
 <?php namespace CJAN\Http\Controllers;
 
 use Debugbar;
+use Illuminate\Pagination\Paginator;
 
 use CJAN\Http\Requests;
 use CJAN\Http\Controllers\Controller;
@@ -23,10 +24,13 @@ class ProjectController extends Controller {
 			return view('projects');
 		}
 		$projects = $projectGateway->findProjectsByLetter($letter);
+		$paginator = new Paginator($projects['data'], $projects['total'], $projects['per_page']);
+		$args['paginator'] = $paginator;
 		Debugbar::info($projects);
 		$data = array(
 			'letter' => strtoupper($letter),
-			'projects' => $projects
+			'projects' => $projects['data'],
+			'paginator' => $paginator
 		);
 		return view('projects_by_letter', $data);
 	}

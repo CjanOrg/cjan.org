@@ -20,6 +20,8 @@
 				@endif
 				</div>
 
+				{!! $paginator['links'] !!}
+
 			</div>
 		</div>
 	</div>
