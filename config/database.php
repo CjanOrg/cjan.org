@@ -50,7 +50,6 @@ return [
 			'driver'   => 'sqlite',
 			'database' => storage_path().'/database.sqlite',
 			'prefix'   => '',
-			'exec'     => 'PRAGMA foreign_keys = ON;'
 		],
 
 		'mysql' => [

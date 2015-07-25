@@ -15,9 +15,9 @@ class AppServiceProvider extends ServiceProvider {
 	{
 		// Add support to SQLite foreign keys
 		// http://stackoverflow.com/questions/31228950/laravel-5-1-enable-sqlite-foreign-key-constraints
-		if (DB::connection() instanceof \Illuminate\Database\SQLiteConnection) {
-    		DB::statement(DB::raw('PRAGMA foreign_keys=1'));
-		}
+		//if (DB::connection() instanceof \Illuminate\Database\SQLiteConnection) {
+    	//	DB::statement(DB::raw('PRAGMA foreign_keys=1'));
+		//}
 	}
 
 	/**

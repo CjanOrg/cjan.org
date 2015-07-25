@@ -13,7 +13,7 @@ return [
 	|
 	*/
 
-	'debug' => env('APP_DEBUG'),
+	'debug' => true, /*env('APP_DEBUG'),*/
 
 	/*
 	|--------------------------------------------------------------------------
@@ -136,6 +136,9 @@ return [
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 
+		# Laravel Debugbar
+		'Barryvdh\Debugbar\ServiceProvider',
+
 		/*
 		 * Frozennode to administer database entries.
 		 */
@@ -197,6 +200,7 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
+		'Debugbar' => 'Barryvdh\Debugbar\Facade',
 
 	],
 
