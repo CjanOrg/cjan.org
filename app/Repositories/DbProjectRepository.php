@@ -15,6 +15,8 @@ class DbProjectRepository extends DbBaseRepository implements ProjectRepository 
 	{
 		$projectArtifactIdsWithLetter = ProjectArtifactId::
 			where('letter', '=', $letter)
+			->with('projectGroupId')
+			->with('projectVersions')
 			->get();
 		return $projectArtifactIdsWithLetter->toArray();
 	}

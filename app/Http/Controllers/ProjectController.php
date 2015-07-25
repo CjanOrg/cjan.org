@@ -1,5 +1,7 @@
 <?php namespace CJAN\Http\Controllers;
 
+use Debugbar;
+
 use CJAN\Http\Requests;
 use CJAN\Http\Controllers\Controller;
 
@@ -21,6 +23,7 @@ class ProjectController extends Controller {
 			return view('projects');
 		}
 		$projects = $projectGateway->findProjectsByLetter($letter);
+		Debugbar::info($projects);
 		$data = array(
 			'letter' => strtoupper($letter),
 			'projects' => $projects
