@@ -19,7 +19,7 @@ class ProjectArtifactId extends BaseModel {
 	
 	public function projectGroupId()
 	{
-	 	return $this->belongsTo('CJAN\Models\ProjectGroupId', 'id', 'id');
+	 	return $this->belongsTo('CJAN\Models\ProjectGroupId');
 	}
 
 }

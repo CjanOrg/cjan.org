@@ -1,11 +1,11 @@
 <?php namespace CJAN\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Eloquent;
 use Validator;
 
 use CJAN\Utils\ValidationException;
 
-class BaseModel extends Model {
+class BaseModel extends Eloquent {
 
 	protected static $_rules = array(
         'create' => array(),

@@ -13,6 +13,11 @@ return array(
 		'id',
 		'name' => array(
 			'title' => 'Name'
+		),
+		'projectArtifactIds' => array(
+			'relationship' => 'projectArtifactIds',
+			'title' => 'Project Artifact IDs',
+			'select' => 'COUNT((:table).id)'
 		)
 	),
 	/**
