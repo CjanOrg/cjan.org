@@ -12,7 +12,7 @@
 					<p><strong>Listing of projects starting with {{ $letter }}</strong></p>
 					@if (isset($projects) and !empty($projects))
 						@foreach ($projects as $project)
-						@include('parts/projects/view')
+						@include('partials/projects/view')
 						@endforeach
 					@else
 					<p>Wow! We still don't have any projects starting with {{ $letter }}. Read our <a href="{{ url('/getting-started') }}">Getting Started</a> guide and contribute with your tests.</p>

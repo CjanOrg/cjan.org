@@ -10,6 +10,11 @@
 				</div>
 
 				<div class="panel-body">
+					<h4>Versions</h4>
+
+					@foreach ($project['project_versions'] as $version)
+						@include ('partials/projects/version')
+					@endforeach
 
 				</div>
 
