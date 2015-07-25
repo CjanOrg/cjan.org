@@ -13,7 +13,9 @@
 
 Route::get('/', 'HomeController@index');
 
-Route::resource('projects', 'ProjectController');
+Route::resource('projects', 'ProjectsController');
+
+Route::resource('projects/{projectId}/versions', 'VersionsController');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

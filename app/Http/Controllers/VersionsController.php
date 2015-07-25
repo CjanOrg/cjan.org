@@ -1,21 +1,23 @@
 <?php namespace CJAN\Http\Controllers;
 
 use Debugbar;
-use Illuminate\Pagination\Paginator;
 
 use CJAN\Http\Requests;
 use CJAN\Http\Controllers\Controller;
 
+use CJAN\Gateways\VersionsGateway;
 use CJAN\Gateways\ProjectsGateway;
 
 use Illuminate\Http\Request;
 
-class ProjectController extends Controller {
+class VersionsController extends Controller {
 
+	protected $versionsGateway;
 	protected $projectsGateway;
 
-	public function __construct(ProjectsGateway $projectsGateway)
+	public function __construct(VersionsGateway $versionsGateway, ProjectsGateway $projectsGateway)
 	{
+		$this->versionsGateway = $versionsGateway;
 		$this->projectsGateway = $projectsGateway;
 	}
 
@@ -24,21 +26,9 @@ class ProjectController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index(Request $request)
+	public function index()
 	{
-		$letter = $request->input('letter');
-		if (!isset($letter) || !$letter) {
-			return view('projects');
-		}
-		$projects = $this->projectsGateway->findProjectsByLetter($letter);
-		$paginator = new Paginator($projects['data'], $projects['total'], $projects['per_page']);
-		Debugbar::info($projects);
-		$data = array(
-			'letter' => strtoupper($letter),
-			'projects' => $projects['data'],
-			'paginator' => $paginator
-		);
-		return view('projects_by_letter', $data);
+		//
 	}
 
 	/**
@@ -67,15 +57,18 @@ class ProjectController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($projectId, $id)
 	{
-		$project = $this->projectsGateway->findById($id);
+		$version = $this->versionsGateway->findById($id);
+		Debugbar::info($version);
+		$project = $this->projectsGateway->findById($projectId);
 		Debugbar::info($project);
 		$data = array(
 			'id' => $id,
+			'version' => $version,
 			'project' => $project
 		);
-		return view('project', $data);
+		return view('version', $data);
 	}
 
 	/**
