@@ -4,7 +4,7 @@ class ProjectArtifactId extends BaseModel {
 
 	protected $table = 'project_artifact_ids';
 
-	protected $fillable = ['name', 'project_group_id_id'];
+	protected $fillable = ['name', 'letter', 'project_group_id_id'];
 
 	protected static $_rules = array(
 		"create" => array(

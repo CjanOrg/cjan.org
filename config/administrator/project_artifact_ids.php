@@ -14,6 +14,10 @@ return array(
 		'name' => array(
 			'title' => 'Name',
 		),
+		'letter' => array(
+			'title' => 'Letter',
+			'type' => 'text'
+		),
 		'project_group_id_id' => array(
 			'title' => 'Project Group ID',
 			'relationship' => 'projectGroupId',
@@ -34,6 +38,10 @@ return array(
 			'title' => 'Name',
 			'name_field' => 'name'
 		),
+		'letter' => array(
+			'title' => 'Letter',
+			'type' => 'text'
+		),
 		'projectGroupId' => array(
 			'title' => 'Project Group ID',
 			'type' => 'relationship',
@@ -47,6 +55,10 @@ return array(
 		'name' => array(
 			'title' => 'Name',
 			'type' => 'text',
+		),
+		'letter' => array(
+			'title' => 'Letter',
+			'type' => 'text'
 		),
 		'projectGroupId' => array(
 			'title' => 'Project Group ID',

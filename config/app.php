@@ -153,6 +153,8 @@ return [
 		'CJAN\Providers\EventServiceProvider',
 		'CJAN\Providers\RouteServiceProvider',
 
+		'CJAN\Providers\RepositoriesServiceProvider',
+
 	],
 
 	/*

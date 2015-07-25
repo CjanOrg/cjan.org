@@ -13,7 +13,7 @@ class ProjectGateway {
 
 	public function findProjectsByLetter($letter)
 	{
-		return array();
+		return $this->projectRepository->findProjectsByLetter($letter);
 	}
 
 }
