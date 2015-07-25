@@ -2,8 +2,8 @@
 
 use Illuminate\Support\ServiceProvider;
 
-use CJAN\Repositories\ProjectRepository;
-use CJAN\Repositories\DbProjectRepository;
+use CJAN\Repositories\ProjectsRepository;
+use CJAN\Repositories\DbProjectsRepository;
 
 class RepositoriesServiceProvider extends ServiceProvider {
 
@@ -24,8 +24,8 @@ class RepositoriesServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app->singleton('CJAN\Repositories\ProjectRepository', function ($app) {
-            return new DBProjectRepository();
+		$this->app->singleton('CJAN\Repositories\ProjectsRepository', function ($app) {
+            return new DbProjectsRepository();
         });
 	}
 

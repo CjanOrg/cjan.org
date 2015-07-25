@@ -6,26 +6,32 @@ use Illuminate\Pagination\Paginator;
 use CJAN\Http\Requests;
 use CJAN\Http\Controllers\Controller;
 
-use CJAN\Gateways\ProjectGateway;
+use CJAN\Gateways\ProjectsGateway;
 
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller {
+
+	protected $projectsGateway;
+
+	public function __construct(ProjectsGateway $projectsGateway)
+	{
+		$this->projectsGateway = $projectsGateway;
+	}
 
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-	public function index(ProjectGateway $projectGateway, Request $request)
+	public function index(Request $request)
 	{
 		$letter = $request->input('letter');
 		if (!isset($letter) || !$letter) {
 			return view('projects');
 		}
-		$projects = $projectGateway->findProjectsByLetter($letter);
+		$projects = $this->projectsGateway->findProjectsByLetter($letter);
 		$paginator = new Paginator($projects['data'], $projects['total'], $projects['per_page']);
-		$args['paginator'] = $paginator;
 		Debugbar::info($projects);
 		$data = array(
 			'letter' => strtoupper($letter),
@@ -63,7 +69,13 @@ class ProjectController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		$project = $this->projectsGateway->findById($id);
+		Debugbar::info($project);
+		$data = array(
+			'id' => $id,
+			'project' => $project
+		);
+		return view('project', $data);
 	}
 
 	/**

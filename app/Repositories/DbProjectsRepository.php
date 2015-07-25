@@ -4,7 +4,7 @@ use CJAN\Models\ProjectGroupId;
 use CJAN\Models\ProjectArtifactId;
 use CJAN\Models\ProjectVersion;
 
-class DbProjectRepository extends DbBaseRepository implements ProjectRepository {
+class DbProjectsRepository extends DbBaseRepository implements ProjectsRepository {
 
 	public function __construct()
 	{
@@ -16,9 +16,18 @@ class DbProjectRepository extends DbBaseRepository implements ProjectRepository 
 		$projectArtifactIdsWithLetter = ProjectArtifactId::
 			where('letter', '=', $letter)
 			->with('projectGroupId')
-			->with('projectVersions')
 			->paginate(12);
 		return $projectArtifactIdsWithLetter->toArray();
+	}
+
+	function findById($id)
+	{
+		$project = ProjectArtifactId::
+			where('id', $id)
+			->with('projectGroupId')
+			->with('projectVersions')
+			->first();
+		return $project->toArray();
 	}
 
 }

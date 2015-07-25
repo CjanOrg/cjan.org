@@ -1,6 +1,6 @@
 <?php namespace CJAN\Repositories;
 
-interface ProjectRepository {
+interface ProjectsRepository {
 
 	public function findProjectsByLetter($letter);
 
