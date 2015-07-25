@@ -53,7 +53,7 @@ return array(
 	 */
 	'menu' => array(
 		'User Administration' => array('users'),
-		'Projects' => array('projects_group_ids', 'project_artifact_ids')
+		'Projects' => array('projects_group_ids', 'project_artifact_ids', 'project_versions')
 	),
 
 	/**

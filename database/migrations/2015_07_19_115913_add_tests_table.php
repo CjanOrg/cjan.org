@@ -16,7 +16,7 @@ class AddTestsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('test_result_id')->unsigned();
-			$table->foreign('test_result_id')->references('id')->table('test_results');
+			$table->foreign('test_result_id')->references('id')->table('test_results')->onDelete('cascade');;
 			$table->text('metadata');
 			$table->timestamps();
 		});

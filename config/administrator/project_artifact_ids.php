@@ -18,6 +18,11 @@ return array(
 			'title' => 'Project Group ID',
 			'relationship' => 'projectGroupId',
 			'select' => '(:table).name'
+		),
+		'projectVersions' => array(
+			'relationship' => 'projectVersions',
+			'title' => 'Project Artifact Versions',
+			'select' => 'COUNT((:table).id)'
 		)
 	),
 	/**

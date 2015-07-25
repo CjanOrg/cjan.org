@@ -16,11 +16,11 @@ class AddTestResultsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('user_id')->unsigned();
-			$table->foreign('user_id')->references('id')->table('users');
+			$table->foreign('user_id')->references('id')->table('users')->onDelete('cascade');;
 			$table->integer('project_version_id')->unsigned();
-			$table->foreign('project_version_id')->references('id')->table('project_versions');
+			$table->foreign('project_version_id')->references('id')->table('project_versions')->onDelete('cascade');;
 			$table->integer('status_id')->unsigned();
-			$table->foreign('status_id')->references('id')->table('statuses');
+			$table->foreign('status_id')->references('id')->table('statuses')->onDelete('cascade');;
 			$table->string('ip_address', 50);
 			$table->string('locale', 50)->nullable();
 			$table->string('platform_encoding', 50)->nullable();

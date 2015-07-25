@@ -22,4 +22,9 @@ class ProjectArtifactId extends BaseModel {
 	 	return $this->belongsTo('CJAN\Models\ProjectGroupId');
 	}
 
+	public function projectVersions() 
+	{
+		return $this->hasMany('CJAN\Models\ProjectVersion');
+	}
+
 }
