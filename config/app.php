@@ -137,6 +137,11 @@ return [
 		'Illuminate\View\ViewServiceProvider',
 
 		/*
+		 * Frozennode to administer database entries.
+		 */
+		'Frozennode\Administrator\AdministratorServiceProvider',
+
+		/*
 		 * Application Service Providers...
 		 */
 		'CJAN\Providers\AppServiceProvider',
