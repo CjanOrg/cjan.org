@@ -52,7 +52,7 @@ return array(
 	 *	)
 	 */
 	'menu' => array(
-		'User Administration' => array('users'),
+		'User Administration' => array('users', 'groups'),
 		'Projects' => array('projects_group_ids', 'project_artifact_ids', 'project_versions')
 	),
 
@@ -64,7 +64,13 @@ return array(
 	 */
 	'permission'=> function()
 	{
-		return Auth::check();
+		$user = Auth::user();
+		if (NULL != $user)
+		{
+			$group = $user->groups()->where('name', '=', 'admin')->first();
+			return $group != NULL && ! empty($group->toArray());
+		}
+		return FALSE;
 	},
 
 	/**

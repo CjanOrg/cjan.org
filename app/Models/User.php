@@ -1,4 +1,4 @@
-<?php namespace CJAN;
+<?php namespace CJAN\Models;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -30,5 +30,15 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * @var array
 	 */
 	protected $hidden = ['password', 'remember_token'];
+
+	public function groups()
+	{
+		return $this->belongsToMany('CJAN\Models\Group', 'users_groups')->withTimestamps();
+	}
+
+	public function isAdmin()
+	{
+		return $this->groups->where('name', '=', 'admin')->first() != NULL;
+	}
 
 }

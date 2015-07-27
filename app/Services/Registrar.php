@@ -1,6 +1,6 @@
 <?php namespace CJAN\Services;
 
-use CJAN\User;
+use CJAN\Models\User;
 use Validator;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 
@@ -29,11 +29,12 @@ class Registrar implements RegistrarContract {
 	 */
 	public function create(array $data)
 	{
-		return User::create([
+		$user = User::create([
 			'name' => $data['name'],
 			'email' => $data['email'],
 			'password' => bcrypt($data['password']),
 		]);
+		return $user;
 	}
 
 }

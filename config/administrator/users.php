@@ -5,7 +5,7 @@
 return array(
 	'title' => 'Users',
 	'single' => 'user',
-	'model' => 'CJAN\User',
+	'model' => 'CJAN\Models\User',
 	/**
 	 * The display columns
 	 */
@@ -16,11 +16,14 @@ return array(
 		),
 		'email' => array(
 			'title' => 'E-mail',
-			'select' => 'COUNT((:table).id)',
 		),
 		'password' => array(
 			'title' => 'Password',
-			'sort_field' => 'birth_date',
+		),
+		'groups' => array(
+			'title' => 'Groups',
+			'relationship' => 'groups',
+			'select' => 'COUNT((:table).id)'
 		)
 	),
 	/**
@@ -35,7 +38,7 @@ return array(
 		'email' => array(
 			'title' => 'E-mail',
 			'name_field' => 'email'
-		)
+		),
 	),
 	/**
 	 * The editable fields
@@ -54,5 +57,10 @@ return array(
 			'type' => 'password',
 			'name_field' => 'password',
 		),
+		'groups' => array(
+			'title' => 'Groups',
+			'type' => 'relationship',
+			'name_field' => 'name'
+		)
 	),
 );
