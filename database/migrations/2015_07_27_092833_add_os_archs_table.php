@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTestsTable extends Migration {
+class AddOsArchsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,10 @@ class AddTestsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('tests', function(Blueprint $table)
+		Schema::create('os_archs', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('test_result_id')->unsigned();
-			$table->foreign('test_result_id')->references('id')->table('test_results')->onDelete('cascade');;
-			$table->text('metadata');
+			$table->string('name', 255)->unique();
 			$table->timestamps();
 		});
 	}
@@ -29,7 +27,7 @@ class AddTestsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('tests');
+		Schema::drop('os_archs');
 	}
 
 }

@@ -18,6 +18,7 @@ class AddProjectArtifactIdsTable extends Migration {
 			$table->integer('project_group_id_id')->unsigned();
 			$table->foreign('project_group_id_id')->references('id')->table('project_group_ids')->onDelete('cascade');
 			$table->string('name', 255)->index('project_artifact_ids_name_index');
+			$table->char('letter', 1);
 			$table->timestamps();
 		});
 	}

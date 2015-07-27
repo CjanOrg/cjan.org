@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddLetterToProjectArtifactIds extends Migration {
+class AddJavaVendorsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,9 +12,11 @@ class AddLetterToProjectArtifactIds extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('project_artifact_ids', function(Blueprint $table)
+		Schema::create('java_vendors', function(Blueprint $table)
 		{
-			$table->char('letter', 1)->default('');
+			$table->increments('id');
+			$table->string('name', 255)->unique();
+			$table->timestamps();
 		});
 	}
 
@@ -25,10 +27,7 @@ class AddLetterToProjectArtifactIds extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('project_artifact_ids', function(Blueprint $table)
-		{
-			$table->dropColumn('letter');
-		});
+		Schema::drop('java_vendors');
 	}
 
 }
