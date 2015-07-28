@@ -17,9 +17,6 @@ return array(
 		'email' => array(
 			'title' => 'E-mail',
 		),
-		'password' => array(
-			'title' => 'Password',
-		),
 		'groups' => array(
 			'title' => 'Groups',
 			'relationship' => 'groups',
