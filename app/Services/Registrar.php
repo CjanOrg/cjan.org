@@ -37,4 +37,9 @@ class Registrar implements RegistrarContract {
 		return $user;
 	}
 
+	public function update(array $data)
+	{
+		
+	}
+
 }
