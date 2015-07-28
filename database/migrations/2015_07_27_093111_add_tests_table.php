@@ -20,7 +20,7 @@ class AddTestsTable extends Migration {
 			$table->foreign('status_id')->references('id')->table('statuses')->onDelete('cascade');
 			$table->integer('test_run_id')->unsigned();
 			$table->foreign('test_run_id')->references('id')->table('test_runs')->onDelete('cascade');
-			$table->text('metadata');
+			$table->text('metadata')->nullable();
 			$table->timestamps();
 		});
 	}
