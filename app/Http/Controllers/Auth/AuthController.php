@@ -101,6 +101,7 @@ class AuthController extends Controller {
 		}
 
 		$user->save();
+		
 		return redirect('/auth/profile');
 	}
 

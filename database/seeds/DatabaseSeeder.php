@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use CJAN\Models\User;
 use CJAN\Models\Group;
+use CJAN\Models\Status;
 
 class DatabaseSeeder extends Seeder {
 
@@ -17,12 +18,13 @@ class DatabaseSeeder extends Seeder {
 	{
 		Model::unguard();
 
-		$this->call('UserTableSeeder');
+		$this->call('UsersAndGroupsTablesSeeder');
+		$this->call('StatusesTableSeeder');
 	}
 
 }
 
-class UserTableSeeder extends Seeder {
+class UsersAndGroupsTablesSeeder extends Seeder {
 
 	public function run()
 	{
@@ -46,6 +48,45 @@ class UserTableSeeder extends Seeder {
 
 		$adminGroup->users()->attach($adminUser->id);
 
+	}
+
+}
+
+class StatusesTableSeeder extends Seeder {
+
+	public function run()
+	{
+		DB::table('tests');
+		DB::table('test_results');
+		DB::table('statuses')->delete();
+
+		Status::create(
+			[
+				'id' => 1,
+				'name' => 'Success'
+			]
+		);
+
+		Status::create(
+			[
+				'id' => 2,
+				'name' => 'Failure'
+			]
+		);
+
+		Status::create(
+			[
+				'id' => 3,
+				'name' => 'Skip'
+			]
+		);
+
+		Status::create(
+			[
+				'id' => 4,
+				'name' => 'Unknown'
+			]
+		);
 	}
 
 }
