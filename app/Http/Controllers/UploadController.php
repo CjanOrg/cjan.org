@@ -1,6 +1,7 @@
 <?php namespace CJAN\Http\Controllers;
 
 use Log;
+use Request;
 
 class UploadController extends Controller {
 
