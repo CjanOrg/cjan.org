@@ -10,6 +10,16 @@ use Illuminate\Http\Response;
 use CJAN\Models\ProjectGroupId;
 use CJAN\Models\ProjectArtifactId;
 use CJAN\Models\ProjectVersion;
+use CJAN\Models\JavaVendor;
+use CJAN\Models\JavaVersion;
+use CJAN\Models\OsFamily;
+use CJAN\Models\OsName;
+use CJAN\Models\Os;
+use CJAN\Models\OsArch;
+use CJAN\Models\Status;
+use CJAN\Models\TestRun;
+use CJAN\Models\Test;
+use CJAN\Models\User;
 
 class UploadController extends Controller {
 
@@ -20,9 +30,18 @@ class UploadController extends Controller {
 
 	public function postResults(Request $request)
 	{
-		// FIXME: add access token and
-		// abort(403, 'Unauthorized action.');
 		$json = $request->input('json');
+		$ip = $request->ip();
+
+		$token = $request->header('token', NULL);
+		$user = User::where('access_token', '=', $token)->first();
+		if (NULL == $user)
+		{
+			abort(403, 'Unauthorized action.');
+		}
+
+		Log::debug(array('ip' => $ip, 'json' => $json, 'user_id' => $user->id));
+
 		if ($json && strlen(trim($json)) > 0)
 		{
 			Log::debug(sprintf("JSON upload: %s", $json));
@@ -30,29 +49,82 @@ class UploadController extends Controller {
 			$jsonObject = json_decode($json);
 
 			try {
-				$groupId = $jsonObject->groupId;
-				$artifactId = $jsonObject->artifactId;
-				$version = $jsonObject->version;
+				$groupIdParam = $jsonObject->groupId;
+				$artifactIdParam = $jsonObject->artifactId;
+				$versionParam = $jsonObject->version;
 
 				$envProps = $jsonObject->envProps;
-				$status = $jsonObject->status;
+				$javaVendorParam = $envProps->javaVendor;
+				$javaVersionParam = $envProps->javaVersion;
+				$osFamilyNameParam = $envProps->osFamily;
+				$osNameParam = $envProps->osName;
+				$osArchParam = $envProps->osArch;
+				$osVersionParam = $envProps->osVersion;
+
+				$localeParam = $envProps->locale;
+				$timezoneParam = $envProps->timezone;
+				$platformEncodingParam = $envProps->platformEncoding;
+
+				$statusParam = $jsonObject->status;
 
 				$tests = $jsonObject->tests;
 
 				// FIXME: validate
 
+				Log::debug('Creating DB transaction');
 				DB::beginTransaction();
 
-				$projectGroupid = ProjectGroupId::firstOrCreate(['name' => $groupId]);
-				$projectArtifactId = ProjectArtifactId::firstOrCreate(['project_group_id_id' => $projectGroupid->id, 'name' => $artifactId, 'letter' => $artifactId[0]]);
-				$version = ProjectVersion::firstOrCreate(['project_artifact_id_id' => $projectArtifactId->id, 'name' => $version]);
+				$status = Status::getStatus($statusParam);
+				Log::debug(sprintf('General status: %s', $status->name));
 
+				$projectGroupId = ProjectGroupId::firstOrCreate(['name' => $groupIdParam]);
+				$projectArtifactId = ProjectArtifactId::firstOrCreate(['project_group_id_id' => $projectGroupId->id, 'name' => $artifactIdParam, 'letter' => $artifactIdParam[0]]);
+				$version = ProjectVersion::firstOrCreate(['project_artifact_id_id' => $projectArtifactId->id, 'name' => $versionParam]);
 
+				Log::debug(sprintf('[%d]:[%d]:[%d]', $projectGroupId->id, $projectArtifactId->id, $versionParam));
+
+				$javaVendor = JavaVendor::firstOrCreate(['name' => $javaVendorParam]);
+				$javaVersion = JavaVersion::firstOrCreate(['name' => $javaVersionParam]);
+				$osFamily = OsFamily::firstOrCreate(['name' => $osFamilyNameParam]);
+				$osName = OsName::firstOrCreate(['name' => $osNameParam, 'os_family_id' => $osFamily->id]);
+				$osArch = OsArch::firstOrCreate(['name' => $osArchParam]);
+				$os = Os::firstOrCreate(['version' => $osVersionParam, 'os_name_id' => $osName->id, 'os_arch_id' => $osArch->id]);
+
+				Log::debug(array(
+					'javaVendor' => $javaVendor->id,
+					'javaVersion' => $javaVersion->id,
+					'osFamily' => $osFamily->id,
+					'osName' => $osName->id,
+					'osArch' => $osArch->id,
+					'os' => $os->id
+				));
+
+				$testRun = TestRun::create(
+					[
+						'ip_address' => $ip,
+						'locale' => $localeParam,
+						'timezone' => $timezoneParam,
+						'platform_encoding' => $platformEncodingParam,
+						'user_id' => $user->id,
+						'project_version_id' => $version->id,
+						'os_id' => $os->id,
+						'status_id' => $status->id
+					]
+				);
+
+				Log::info(sprintf('New test run [%d] created. [%s]:[%s]:[%s]', $testRun->id, $groupIdParam, $artifactIdParam, $versionParam));
+
+				$testArray = $this->createTestArray($testRun->id, $jsonObject->tests);
+				Log::debug(sprintf('Bulk inserting %d tests...', count($testArray)));
+
+				Test::insert($testArray);
+
+				Log::debug('All good!!! Commiting transaction.');
 
 				DB::commit();
 
-				return (new Response(array('test_run' => 1), 200))
-	              ->header('Content-Type', 'application/json');
+				return (new Response(array('test_run' => $testRun->id), 200))
+	            	->header('Content-Type', 'application/json');
 	        } catch (Exception $e) {
 	        	DB::rollback();
 	        	Log::warning("Rolling back transaction: " . $e->getMessage());
@@ -62,6 +134,26 @@ class UploadController extends Controller {
 		}
 
 		abort(500, "Invalid upload request");
+	}
+
+	private function createTestArray($testRunId, $tests)
+	{
+		$testsArray = array();
+
+		foreach ($tests as $test)
+		{
+			$dt = date('Y-m-d H:i:s');
+			$testsArray[] = array(
+				'name' => $test->name,
+				'test_run_id' => $testRunId,
+				'status_id' => Status::getStatusId($test->status),
+				'metadata' => $test->metadata,
+				'created_at'=> $dt,
+        		'updated_at'=> $dt
+			);
+		}
+
+		return $testsArray;
 	}
 
 }

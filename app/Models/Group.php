@@ -8,10 +8,10 @@ class Group extends BaseModel {
 
 	protected static $_rules = array(
 		"create" => array(
-			'name' => 'unique:groups|required|min:2|max:50',
+			'name' => 'unique:groups|required|min:1|max:50',
 		),
 		"update" => array(
-			'name' => 'unique:groups|required|min:2|max:50',
+			'name' => 'unique:groups|required|min:1|max:50',
 		)
 	);
 	

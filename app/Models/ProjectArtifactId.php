@@ -8,11 +8,11 @@ class ProjectArtifactId extends BaseModel {
 
 	protected static $_rules = array(
 		"create" => array(
-			'name' => 'unique:project_artifact_ids|required|min:2|max:255',
+			'name' => 'unique:project_artifact_ids|required|min:1|max:255',
 			'project_group_id_id' => 'required|numeric'
 		),
 		"update" => array(
-			'name' => 'unique:project_artifact_ids|required|min:2|max:255',
+			'name' => 'unique:project_artifact_ids|required|min:1|max:255',
 			'project_group_id_id' => 'required|numeric'
 		)
 	);
