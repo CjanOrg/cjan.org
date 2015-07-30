@@ -13,11 +13,13 @@
 
 Route::get('/', 'HomeController@index');
 
+Route::get('projects/search', 'SearchController@index');
+
 Route::resource('projects', 'ProjectsController');
 Route::resource('projects/{projectId}/versions', 'VersionsController');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
-	'upload' => 'UploadController'
+	'upload' => 'UploadController',
 ]);

@@ -38,7 +38,7 @@
 					@else
 					<li><a href="{{ url('/') }}">Home</a></li>
 					@endif
-					@if (Request::is('projects'))
+					@if (Request::is('projects*'))
 					<li class='active'><a href="{{ url('/projects') }}">Projects</a></li>
 					@else
 					<li><a href="{{ url('/projects') }}">Projects</a></li>
