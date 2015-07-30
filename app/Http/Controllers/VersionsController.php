@@ -7,6 +7,7 @@ use CJAN\Http\Controllers\Controller;
 
 use CJAN\Gateways\VersionsGateway;
 use CJAN\Gateways\ProjectsGateway;
+use CJAN\Gateways\TestRunsGateway;
 
 use Illuminate\Http\Request;
 
@@ -15,10 +16,12 @@ class VersionsController extends Controller {
 	protected $versionsGateway;
 	protected $projectsGateway;
 
-	public function __construct(VersionsGateway $versionsGateway, ProjectsGateway $projectsGateway)
+	public function __construct(VersionsGateway $versionsGateway, ProjectsGateway $projectsGateway, 
+		TestRunsGateway $testRunsGateway)
 	{
 		$this->versionsGateway = $versionsGateway;
 		$this->projectsGateway = $projectsGateway;
+		$this->testRunsGateway = $testRunsGateway;
 	}
 
 	/**
@@ -63,10 +66,13 @@ class VersionsController extends Controller {
 		Debugbar::info($version);
 		$project = $this->projectsGateway->findById($projectId);
 		Debugbar::info($project);
+		$testRuns = $this->testRunsGateway->findByVersionId($version['id']);
+		Debugbar::info($testRuns);
 		$data = array(
 			'id' => $id,
 			'version' => $version,
-			'project' => $project
+			'project' => $project,
+			'testRuns' => $testRuns
 		);
 		return view('version', $data);
 	}

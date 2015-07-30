@@ -10,7 +10,9 @@
 				</div>
 
 				<div class="panel-body">
-					<!-- TODO: text matrix -->
+					@foreach ($testRuns as $testRun)
+					@include('partials/versions/test_run')
+					@endforeach
 				</div>
 
 			</div>

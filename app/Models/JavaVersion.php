@@ -2,22 +2,24 @@
 
 class JavaVersion extends BaseModel {
 
-	protected $table = 'os_archs';
+	protected $table = 'java_versions';
 
-	protected $fillable = ['name'];
+	protected $fillable = ['name', 'java_vendor_id'];
 
 	protected static $_rules = array(
 		"create" => array(
-			'name' => 'unique:os_archs|required|min:1|max:255',
+			'name' => 'unique:java_versions|required|min:1|max:255',
+			'java_vendor_id' => 'required|numeric'
 		),
 		"update" => array(
-			'name' => 'unique:os_archs|required|min:1|max:255',
+			'name' => 'unique:java_versions|required|min:1|max:255',
+			'java_vendor_id' => 'required|numeric'
 		)
 	);
 
 	public function javaVendor() 
 	{
-		return $this->belongsTo('CJAN\Models\JavaVedor');
+		return $this->belongsTo('CJAN\Models\JavaVendor');
 	}
 
 }

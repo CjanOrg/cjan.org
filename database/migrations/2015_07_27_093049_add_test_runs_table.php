@@ -27,6 +27,8 @@ class AddTestRunsTable extends Migration {
 			$table->foreign('os_id')->references('id')->table('oses')->onDelete('cascade');
 			$table->integer('status_id')->unsigned();
 			$table->foreign('status_id')->references('id')->table('statuses')->onDelete('cascade');
+			$table->integer('java_version_id')->unsigned();
+			$table->foreign('java_version_id')->references('id')->table('java_versions')->onDelete('cascade');
 			$table->timestamps();
 		});
 	}

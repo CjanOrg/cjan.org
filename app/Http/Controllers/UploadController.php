@@ -74,8 +74,8 @@ class UploadController extends Controller {
 				Log::debug('Creating DB transaction');
 				DB::beginTransaction();
 
-				$status = Status::getStatus($statusParam);
-				Log::debug(sprintf('General status: %s', $status->name));
+				$statusId = Status::getStatusId($statusParam);
+				Log::debug(sprintf('General status: %s <- %s', $statusId, $statusParam));
 
 				$projectGroupId = ProjectGroupId::firstOrCreate(['name' => $groupIdParam]);
 				$projectArtifactId = ProjectArtifactId::firstOrCreate(['project_group_id_id' => $projectGroupId->id, 'name' => $artifactIdParam, 'letter' => $artifactIdParam[0]]);
@@ -84,11 +84,13 @@ class UploadController extends Controller {
 				Log::debug(sprintf('[%d]:[%d]:[%d]', $projectGroupId->id, $projectArtifactId->id, $versionParam));
 
 				$javaVendor = JavaVendor::firstOrCreate(['name' => $javaVendorParam]);
-				$javaVersion = JavaVersion::firstOrCreate(['name' => $javaVersionParam]);
+				$javaVersion = JavaVersion::firstOrCreate(['name' => $javaVersionParam, 'java_vendor_id' => $javaVendor->id]);
+				Log::debug("Java env settings recorded!");
 				$osFamily = OsFamily::firstOrCreate(['name' => $osFamilyNameParam]);
 				$osName = OsName::firstOrCreate(['name' => $osNameParam, 'os_family_id' => $osFamily->id]);
 				$osArch = OsArch::firstOrCreate(['name' => $osArchParam]);
 				$os = Os::firstOrCreate(['version' => $osVersionParam, 'os_name_id' => $osName->id, 'os_arch_id' => $osArch->id]);
+				Log::debug("OS env settings recorded!");
 
 				Log::debug(array(
 					'javaVendor' => $javaVendor->id,
@@ -106,9 +108,10 @@ class UploadController extends Controller {
 						'timezone' => $timezoneParam,
 						'platform_encoding' => $platformEncodingParam,
 						'user_id' => $user->id,
+						'java_version_id' => $javaVersion->id,
 						'project_version_id' => $version->id,
 						'os_id' => $os->id,
-						'status_id' => $status->id
+						'status_id' => $statusId
 					]
 				);
 
@@ -127,6 +130,7 @@ class UploadController extends Controller {
 	            	->header('Content-Type', 'application/json');
 	        } catch (Exception $e) {
 	        	DB::rollback();
+	        	Log::error((string) $e);
 	        	Log::warning("Rolling back transaction: " . $e->getMessage());
 	        	return (new Response(array('error' => $e->getMessage()), 500))
 	              ->header('Content-Type', 'application/json');

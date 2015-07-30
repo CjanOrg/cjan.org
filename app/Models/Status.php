@@ -38,15 +38,15 @@ class Status extends BaseModel {
 
 	public static function getStatusId($name)
 	{
-		if (strcmp('SUCCESS', $name) === 0)
+		if (strcmp('SUCCESS', $name) == 0)
 		{
 			return self::SUCCESS;
 		}
-		if (strcmp('FAILURE', $name) === 0)
+		if (strcmp('FAILURE', $name) == 0)
 		{
 			return self::FAILURE;
 		}
-		if (strcmp('SKIP', $name) === 0)
+		if (strcmp('SKIP', $name) == 0)
 		{
 			return self::SKIP;
 		}

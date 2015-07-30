@@ -4,7 +4,7 @@ class TestRun extends BaseModel {
 
 	protected $table = 'test_runs';
 
-	protected $fillable = ['ip_address', 'locale', 'timezone', 'platform_encoding', 'user_id', 'project_version_id', 'os_id', 'status_id'];
+	protected $fillable = ['ip_address', 'locale', 'timezone', 'platform_encoding', 'user_id', 'java_version_id', 'project_version_id', 'os_id', 'status_id'];
 
 	protected static $_rules = array(
 		"create" => array(
@@ -13,6 +13,7 @@ class TestRun extends BaseModel {
 			'timezone' => 'min:1|max:50',
 			'platform_encoding' => 'min:1|max:50',
 			'user_id' => 'required|numeric',
+			'java_version_id' => 'required|numeric',
 			'project_version_id' => 'required|numeric',
 			'os_id' => 'required|numeric',
 			'status_id' => 'required|numeric',
@@ -23,6 +24,7 @@ class TestRun extends BaseModel {
 			'timezone' => 'min:1|max:50',
 			'platform_encoding' => 'min:1|max:50',
 			'user_id' => 'required|numeric',
+			'java_version_id' => 'required|numeric',
 			'project_version_id' => 'required|numeric',
 			'os_id' => 'required|numeric',
 			'status_id' => 'required|numeric',
@@ -32,6 +34,11 @@ class TestRun extends BaseModel {
 	public function user() 
 	{
 		return $this->belongsTo('CJAN\Models\User');
+	}
+
+	public function javaVersion()
+	{
+		return $this->belongsTo('CJAN\Models\JavaVersion');
 	}
 
 	public function projectVersion() 
