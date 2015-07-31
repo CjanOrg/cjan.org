@@ -39,3 +39,14 @@ Breadcrumbs::register('version', function($breadcrumbs, $letter, $project, $vers
     $breadcrumbs->push($project['name'], url('/projects/' . $project['id']));
     $breadcrumbs->push($version['name'], url('/projects/' . $project['id'] . '/versions/' . $version['id']));
 });
+
+// Test Run
+Breadcrumbs::register('test-run', function($breadcrumbs, $letter, $project, $version, $testRun)
+{
+	$breadcrumbs->parent('home');
+	$breadcrumbs->push('Projects', url('/projects/'));
+    $breadcrumbs->push($letter, url('/projects?letter=' . $letter));
+    $breadcrumbs->push($project['name'], url('/projects/' . $project['id']));
+    $breadcrumbs->push($version['name'], url('/projects/' . $project['id'] . '/versions/' . $version['id']));
+    $breadcrumbs->push('Test Run ' . $testRun['id'], url('/projects/' . $project['id'] . '/versions/' . $version['id'] . '/testruns/' . $testRun['id']));
+});

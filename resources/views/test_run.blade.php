@@ -1,5 +1,7 @@
 @extends('app')
 
+@section('breadcrumbs', Breadcrumbs::render('test-run', $letter, $project, $version, $testRun))
+
 @section('content')
 <div class="container">
 	<div class="row">

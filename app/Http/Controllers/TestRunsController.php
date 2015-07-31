@@ -64,20 +64,23 @@ class TestRunsController extends Controller {
 	public function show($projectId, $versionId, $id)
 	{
 		$version = $this->versionsGateway->findById($versionId);
+		$project = $version['project_artifact'];
 		Debugbar::info($version);
 		// $testRuns = $this->testRunsGateway->findByVersionId($version['id']);
 		// Debugbar::info($testRuns);
 
 		$testRun = $this->testRunsGateway->findById($id);
 		Debugbar::info($testRun);
+		$letter = strtoupper($project['name'][0]);
 		$user = Auth::user();
 		$data = array(
 			'projectId' => $projectId,
 			'versionId' => $versionId,
 			'version' => $version,
-			'project' => $version['project_artifact'],
+			'project' => $project,
 			'id' => $id,
 			'testRun' => $testRun,
+			'letter' => $letter,
 			'user' => $user
 		);
 		return view('test_run', $data);
