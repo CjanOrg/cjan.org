@@ -69,33 +69,142 @@
 			<div class="col-md-10">
 				<div class="btn-toolbar" role="toolbar" aria-label="project-letters">
 					<div class="btn-group" role="group" aria-label="project-letter-a">
+						@if (isset($letter) and $letter == 'A')
+						<a class="btn btn-default active" href="{{ URL::to('/projects?letter=a') }}">A</a>
+						@else
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=a') }}">A</a>
+						@endif
+						@if (isset($letter) and $letter == 'B')
+						<a class="btn btn-default active" href="{{ URL::to('/projects?letter=b') }}">B</a>
+						@else
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=b') }}">B</a>
+						@endif
+						@if (isset($letter) and $letter == 'C')
+						<a class="btn btn-default active" href="{{ URL::to('/projects?letter=c') }}">C</a>
+						@else
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=c') }}">C</a>
+						@endif
+						@if (isset($letter) and $letter == 'D')
+						<a class="btn btn-default active" href="{{ URL::to('/projects?letter=d') }}">D</a>
+						@else
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=d') }}">D</a>
+						@endif
+						@if (isset($letter) and $letter == 'E')
+						<a class="btn btn-default active" href="{{ URL::to('/projects?letter=e') }}">E</a>
+						@else
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=e') }}">E</a>
+						@endif
+						@if (isset($letter) and $letter == 'F')
+						<a class="btn btn-default active" href="{{ URL::to('/projects?letter=f') }}">F</a>
+						@else
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=f') }}">F</a>
+						@endif
+						@if (isset($letter) and $letter == 'G')
+						<a class="btn btn-default active" href="{{ URL::to('/projects?letter=g') }}">G</a>
+						@else
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=g') }}">G</a>
+						@endif
+						@if (isset($letter) and $letter == 'H')
+						<a class="btn btn-default active" href="{{ URL::to('/projects?letter=h') }}">H</a>
+						@else
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=h') }}">H</a>
+						@endif
+						@if (isset($letter) and $letter == 'I')
+						<a class="btn btn-default active" href="{{ URL::to('/projects?letter=i') }}">I</a>
+						@else
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=i') }}">I</a>
+						@endif
+						@if (isset($letter) and $letter == 'J')
+						<a class="btn btn-default active" href="{{ URL::to('/projects?letter=j') }}">J</a>
+						@else
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=j') }}">J</a>
+						@endif
+						@if (isset($letter) and $letter == 'K')
+						<a class="btn btn-default active" href="{{ URL::to('/projects?letter=k') }}">K</a>
+						@else
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=k') }}">K</a>
+						@endif
+						@if (isset($letter) and $letter == 'L')
+						<a class="btn btn-default active" href="{{ URL::to('/projects?letter=l') }}">L</a>
+						@else
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=l') }}">L</a>
+						@endif
+						@if (isset($letter) and $letter == 'M')
+						<a class="btn btn-default active" href="{{ URL::to('/projects?letter=m') }}">M</a>
+						@else
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=m') }}">M</a>
+						@endif
+						@if (isset($letter) and $letter == 'N')
+						<a class="btn btn-default active" href="{{ URL::to('/projects?letter=n') }}">N</a>
+						@else
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=n') }}">N</a>
+						@endif
+						@if (isset($letter) and $letter == 'O')
+						<a class="btn btn-default active" href="{{ URL::to('/projects?letter=o') }}">O</a>
+						@else
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=o') }}">O</a>
+						@endif
+						@if (isset($letter) and $letter == 'P')
+						<a class="btn btn-default active" href="{{ URL::to('/projects?letter=p') }}">P</a>
+						@else
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=p') }}">P</a>
+						@endif
+						@if (isset($letter) and $letter == 'Q')
+						<a class="btn btn-default active" href="{{ URL::to('/projects?letter=q') }}">Q</a>
+						@else
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=q') }}">Q</a>
+						@endif
+						@if (isset($letter) and $letter == 'R')
+						<a class="btn btn-default active" href="{{ URL::to('/projects?letter=r') }}">R</a>
+						@else
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=r') }}">R</a>
+						@endif
+						@if (isset($letter) and $letter == 'S')
+						<a class="btn btn-default active" href="{{ URL::to('/projects?letter=s') }}">S</a>
+						@else
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=s') }}">S</a>
+						@endif
+						@if (isset($letter) and $letter == 'T')
+						<a class="btn btn-default active" href="{{ URL::to('/projects?letter=t') }}">T</a>
+						@else
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=t') }}">T</a>
+						@endif
+						@if (isset($letter) and $letter == 'U')
+						<a class="btn btn-default active" href="{{ URL::to('/projects?letter=u') }}">U</a>
+						@else
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=u') }}">U</a>
+						@endif
+						@if (isset($letter) and $letter == 'V')
+						<a class="btn btn-default active" href="{{ URL::to('/projects?letter=v') }}">V</a>
+						@else
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=v') }}">V</a>
+						@endif
+						@if (isset($letter) and $letter == 'W')
+						<a class="btn btn-default active" href="{{ URL::to('/projects?letter=w') }}">W</a>
+						@else
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=w') }}">W</a>
+						@endif
+						@if (isset($letter) and $letter == 'X')
+						<a class="btn btn-default active" href="{{ URL::to('/projects?letter=x') }}">X</a>
+						@else
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=x') }}">X</a>
+						@endif
+						@if (isset($letter) and $letter == 'Y')
+						<a class="btn btn-default active" href="{{ URL::to('/projects?letter=y') }}">Y</a>
+						@else
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=y') }}">Y</a>
+						@endif
+						@if (isset($letter) and $letter == 'Z')
+						<a class="btn btn-default active" href="{{ URL::to('/projects?letter=z') }}">Z</a>
+						@else
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=z') }}">Z</a>
+						@endif
+						@if (isset($letter) and $letter == '0-9')
+						<a class="btn btn-default active" href="{{ URL::to('/projects?letter=0-9') }}">0-9</a>
+						@else
 						<a class="btn btn-default" href="{{ URL::to('/projects?letter=0-9') }}">0-9</a>
+						@endif
+
 					</div>
 				</div>
 				<br/>
