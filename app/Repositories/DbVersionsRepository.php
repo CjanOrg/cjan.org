@@ -13,7 +13,7 @@ class DbVersionsRepository extends DbBaseRepository implements VersionsRepositor
 	{
 		$version = ProjectVersion::
 			where('id', $id)
-			->with('projectArtifact')
+			->with(['projectArtifact', 'projectArtifact.projectGroupId'])
 			->first();
 		return $version->toArray();
 	}

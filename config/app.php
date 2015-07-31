@@ -13,7 +13,7 @@ return [
 	|
 	*/
 
-	'debug' => FALSE, /*env('APP_DEBUG'),*/
+	'debug' => TRUE, /*env('APP_DEBUG'),*/
 
 	/*
 	|--------------------------------------------------------------------------
@@ -136,13 +136,20 @@ return [
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 
-		# Laravel Debugbar
+		/*
+		 * Laravel Debugbar
+		 */
 		'Barryvdh\Debugbar\ServiceProvider',
 
 		/*
 		 * Frozennode to administer database entries.
 		 */
 		'Frozennode\Administrator\AdministratorServiceProvider',
+
+		/*
+		 * Bread crumbs
+		 */
+		'DaveJamesMiller\Breadcrumbs\ServiceProvider',
 
 		/*
 		 * Application Service Providers...
@@ -204,6 +211,8 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
 		
 		'Debugbar' => 'Barryvdh\Debugbar\Facade',
+
+		'Breadcrumbs' => 'DaveJamesMiller\Breadcrumbs\Facade',
 
 	],
 

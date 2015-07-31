@@ -14,7 +14,7 @@
 <li>TZ: {{ $testRun['timezone'] }}</li>
 <li>Locale: {{ $testRun['locale'] }}</li>
 <li>Platform Encoding: {{ $testRun['platform_encoding'] }}</li>
-<li>{{ count($testRun['tests']) }} tests <a href="{{ url('/projects/' . $project['id'] . '/versions/' . $version['id'] . '/testruns/' . $testRun['id']) }}">&raquo;</a></li>
+<li>Created: {{ $testRun['created_at'] }}</li>
 </ul>
 
 </div>

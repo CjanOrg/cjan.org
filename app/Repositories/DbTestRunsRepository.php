@@ -9,13 +9,22 @@ class DbTestRunsRepository extends DbBaseRepository implements TestRunsRepositor
 		parent::__construct(NULL);
 	}
 
-	function findByVersionId($versionId)
+	public function findByVersionId($versionId)
 	{
-		$version = TestRun::
+		$testRun = TestRun::
 			where('project_version_id', $versionId)
-			->with(['tests', 'javaVersion.javaVendor'])
+			->with(['tests.status', 'javaVersion.javaVendor'])
 			->get();
-		return $version->toArray();
+		return $testRun->toArray();
+	}
+
+	public function findById($id)
+	{
+		$testRun = TestRun::
+			where('id', '=', $id)
+			->with(['tests.status', 'javaVersion.javaVendor'])
+			->firstOrFail();
+		return $testRun->toArray();
 	}
 
 }

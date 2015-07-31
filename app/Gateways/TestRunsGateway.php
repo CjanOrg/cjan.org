@@ -16,4 +16,9 @@ class TestRunsGateway {
 		return $this->testRunsRepository->findByVersionId($versionId);
 	}
 
+	public function findById($id)
+	{
+		return $this->testRunsRepository->findById($id);
+	}
+
 }

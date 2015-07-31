@@ -17,6 +17,7 @@ Route::get('projects/search', 'SearchController@index');
 
 Route::resource('projects', 'ProjectsController');
 Route::resource('projects/{projectId}/versions', 'VersionsController');
+Route::resource('projects/{projectId}/versions/{versionId}/testruns', 'TestRunsController');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
