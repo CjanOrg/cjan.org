@@ -1,6 +1,7 @@
 <?php namespace CJAN\Http\Controllers;
 
 use Debugbar;
+use Auth;
 
 use CJAN\Http\Requests;
 use CJAN\Http\Controllers\Controller;
@@ -69,13 +70,15 @@ class TestRunsController extends Controller {
 
 		$testRun = $this->testRunsGateway->findById($id);
 		Debugbar::info($testRun);
+		$user = Auth::user();
 		$data = array(
 			'projectId' => $projectId,
 			'versionId' => $versionId,
 			'version' => $version,
 			'project' => $version['project_artifact'],
 			'id' => $id,
-			'testRun' => $testRun
+			'testRun' => $testRun,
+			'user' => $user
 		);
 		return view('test_run', $data);
 	}

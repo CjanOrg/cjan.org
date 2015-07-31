@@ -1,0 +1,8 @@
+{
+  "name": "cjan",
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.5",
+    "roboto-fontface": "~0.4.3"
+  }
+}

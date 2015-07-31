@@ -18,33 +18,24 @@ Breadcrumbs::register('projects-by-letter', function($breadcrumbs, $letter)
 {
 	$breadcrumbs->parent('home');
 	$breadcrumbs->push('Projects', url('/projects/'));
-    $breadcrumbs->push($letter, url('/projects?letter='));
+    $breadcrumbs->push($letter, url('/projects?letter=' . $letter));
 });
 
-// // Home > About
-// Breadcrumbs::register('about', function($breadcrumbs)
-// {
-//     $breadcrumbs->parent('home');
-//     $breadcrumbs->push('About', route('about'));
-// });
+// Project
+Breadcrumbs::register('project', function($breadcrumbs, $letter, $project)
+{
+	$breadcrumbs->parent('home');
+	$breadcrumbs->push('Projects', url('/projects/'));
+    $breadcrumbs->push($letter, url('/projects?letter=' . $letter));
+    $breadcrumbs->push($project['name'], url('/projects/' . $project['id']));
+});
 
-// // Home > Blog
-// Breadcrumbs::register('blog', function($breadcrumbs)
-// {
-//     $breadcrumbs->parent('home');
-//     $breadcrumbs->push('Blog', route('blog'));
-// });
-
-// // Home > Blog > [Category]
-// Breadcrumbs::register('category', function($breadcrumbs, $category)
-// {
-//     $breadcrumbs->parent('blog');
-//     $breadcrumbs->push($category->title, route('category', $category->id));
-// });
-
-// // Home > Blog > [Category] > [Page]
-// Breadcrumbs::register('page', function($breadcrumbs, $page)
-// {
-//     $breadcrumbs->parent('category', $page->category);
-//     $breadcrumbs->push($page->title, route('page', $page->id));
-// });
+// Version
+Breadcrumbs::register('version', function($breadcrumbs, $letter, $project, $version)
+{
+	$breadcrumbs->parent('home');
+	$breadcrumbs->push('Projects', url('/projects/'));
+    $breadcrumbs->push($letter, url('/projects?letter=' . $letter));
+    $breadcrumbs->push($project['name'], url('/projects/' . $project['id']));
+    $breadcrumbs->push($version['name'], url('/projects/' . $project['id'] . '/versions/' . $version['id']));
+});

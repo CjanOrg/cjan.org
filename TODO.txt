@@ -121,3 +121,6 @@ Parse JSON upload:
         }
     ]
 }
+
+* Credit to: https://mattstauffer.co/blog/convert-laravel-5-frontend-scaffold-to-bower
+

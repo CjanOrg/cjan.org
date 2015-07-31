@@ -73,6 +73,7 @@ class ProjectsController extends Controller {
 		Debugbar::info($project);
 		$data = array(
 			'id' => $id,
+			'letter' => strtoupper($project['name'][0]),
 			'project' => $project
 		);
 		return view('project', $data);

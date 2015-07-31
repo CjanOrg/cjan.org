@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
-				<div class="panel-heading">Home</div>
+				<div class="panel-heading">Search (WIP)</div>
 
 				<div class="panel-body">
 					<h4>Search is a Work-In-Progress right now</h4>
