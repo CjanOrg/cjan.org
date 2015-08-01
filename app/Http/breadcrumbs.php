@@ -7,6 +7,13 @@ Breadcrumbs::register('home', function($breadcrumbs)
 });
 
 // Featured Projects
+Breadcrumbs::register('getting-started', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Getting Started', url('/getting-started/'));
+});
+
+// Featured Projects
 Breadcrumbs::register('featured-projects', function($breadcrumbs)
 {
 	$breadcrumbs->parent('home');
