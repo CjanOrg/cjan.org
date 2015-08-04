@@ -11,7 +11,7 @@ class DbProjectsRepository extends DbBaseRepository implements ProjectsRepositor
 		parent::__construct(NULL);
 	}
 
-	function findProjectsByLetter($letter)
+	public function findProjectsByLetter($letter)
 	{
 		$projectArtifactIdsWithLetter = ProjectArtifactId::
 			where('letter', '=', $letter)
@@ -20,7 +20,7 @@ class DbProjectsRepository extends DbBaseRepository implements ProjectsRepositor
 		return $projectArtifactIdsWithLetter->toArray();
 	}
 
-	function findById($id)
+	public function findById($id)
 	{
 		$project = ProjectArtifactId::
 			where('id', $id)
@@ -28,6 +28,16 @@ class DbProjectsRepository extends DbBaseRepository implements ProjectsRepositor
 			->with('projectVersions')
 			->first();
 		return $project->toArray();
+	}
+
+	public function findFeaturedProjects($limit)
+	{
+		$projects = ProjectArtifactId::
+			orderBy('created_at', 'desc')
+			->with('projectGroupId')
+			->limit($limit)
+			->get();
+		return $projects->toArray();
 	}
 
 }

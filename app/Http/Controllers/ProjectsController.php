@@ -28,7 +28,13 @@ class ProjectsController extends Controller {
 	{
 		$letter = $request->input('letter');
 		if (!isset($letter) || !$letter) {
-			return view('projects');
+			$projects = $this->projectsGateway->findFeaturedProjects();
+			Debugbar::info($projects);
+			$data = array(
+				'letter' => strtoupper($letter),
+				'projects' => $projects
+			);
+			return view('projects', $data);
 		}
 		$projects = $this->projectsGateway->findProjectsByLetter($letter);
 		$paginator = new Paginator($projects['data'], $projects['total'], $projects['per_page']);

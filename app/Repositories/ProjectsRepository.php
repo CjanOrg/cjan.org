@@ -6,4 +6,6 @@ interface ProjectsRepository {
 
 	public function findById($id);
 
+	public function findFeaturedProjects($limit);
+
 }

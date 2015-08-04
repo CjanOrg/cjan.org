@@ -22,4 +22,9 @@ class ProjectsGateway {
 		return $this->projectsRepository->findById($id);
 	}
 
+	public function findFeaturedProjects()
+	{
+		return $this->projectsRepository->findFeaturedProjects(/* limit */ 20);
+	}
+
 }
