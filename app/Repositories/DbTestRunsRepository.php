@@ -22,7 +22,7 @@ class DbTestRunsRepository extends DbBaseRepository implements TestRunsRepositor
 	{
 		$testRun = TestRun::
 			where('id', '=', $id)
-			->with(['tests.status', 'javaVersion.javaVendor'])
+			->with(['tests.status', 'javaVersion.javaVendor', 'user'])
 			->firstOrFail();
 		return $testRun->toArray();
 	}

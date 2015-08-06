@@ -72,7 +72,7 @@ class TestRunsController extends Controller {
 		$testRun = $this->testRunsGateway->findById($id);
 		Debugbar::info($testRun);
 		$letter = strtoupper($project['name'][0]);
-		$user = Auth::user();
+		$user = $testRun['user'];
 		$data = array(
 			'projectId' => $projectId,
 			'versionId' => $versionId,
