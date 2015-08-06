@@ -33,7 +33,7 @@ class UploadController extends Controller {
 		$json = $request->input('json');
 		$ip = $request->ip();
 
-		$token = $request->header('token', NULL);
+		$token = $request->header('x-access-token', NULL);
 		$user = User::where('access_token', '=', $token)->first();
 		if (NULL == $user)
 		{
