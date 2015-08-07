@@ -79,7 +79,9 @@ class UploadController extends Controller {
 
 				$projectGroupId = ProjectGroupId::firstOrCreate(['name' => $groupIdParam]);
 				$projectArtifactId = ProjectArtifactId::firstOrCreate(['project_group_id_id' => $projectGroupId->id, 'name' => $artifactIdParam, 'letter' => $artifactIdParam[0]]);
-				$version = ProjectVersion::firstOrCreate(['project_artifact_id_id' => $projectArtifactId->id, 'name' => $versionParam]);
+
+				$snapshot = ProjectVersion::isSnapshot($versionParam);
+				$version = ProjectVersion::firstOrCreate(['project_artifact_id_id' => $projectArtifactId->id, 'name' => $versionParam, 'snapshot' => $snapshot]);
 
 				Log::debug(sprintf('[%d]:[%d]:[%d]', $projectGroupId->id, $projectArtifactId->id, $versionParam));
 
