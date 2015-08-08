@@ -40,11 +40,11 @@ class UploadController extends Controller {
 			abort(403, 'Unauthorized action.');
 		}
 
-		Log::debug(array('ip' => $ip, 'json' => $json, 'user_id' => $user->id));
+		//Log::debug(array('ip' => $ip, 'json' => $json, 'user_id' => $user->id));
 
 		if ($json && strlen(trim($json)) > 0)
 		{
-			Log::debug(sprintf("JSON upload: %s", $json));
+			//Log::debug(sprintf("JSON upload: %s", $json));
 
 			$jsonObject = json_decode($json);
 
