@@ -16,7 +16,7 @@ class AddProjectVersionsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('project_artifact_id_id')->unsigned();
-			$table->foreign('project_artifact_id_id')->references('id')->table('project_artifact_ids')->onDelete('cascade');
+			$table->foreign('project_artifact_id_id')->references('id')->on('project_artifact_ids')->onDelete('cascade');
 			$table->string('name', 255)->index('project_versions_name_index');
 			$table->boolean('snapshot')->default(FALSE);
 			$table->timestamps();

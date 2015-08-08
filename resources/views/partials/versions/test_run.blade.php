@@ -41,7 +41,7 @@
 	</tr>
 	<tr>
 		<td colspan='2'>
-			<a href="{{ url('/projects/' . $project['id'] . '/versions/' . $version['id'] . '/testruns/' . $testRun['id']) }}">{{ count($testRun['tests']) }} tests <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></a>
+			<a href="{{ url('/projects/' . $project['id'] . '/versions/' . $version['id'] . '/testruns/' . $testRun['id']) }}">{{ $testRun['tests_count'][0]['aggregate'] }} tests <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></a>
 		</td>
 	</tr>
 </table>

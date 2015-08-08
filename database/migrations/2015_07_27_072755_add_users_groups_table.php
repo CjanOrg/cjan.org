@@ -16,9 +16,9 @@ class AddUsersGroupsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('user_id')->unsigned();
-			$table->foreign('user_id')->references('id')->table('users')->onDelete('cascade');
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 			$table->integer('group_id')->unsigned();
-			$table->foreign('group_id')->references('id')->table('groups')->onDelete('cascade');
+			$table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
 			$table->timestamps();
 		});
 	}

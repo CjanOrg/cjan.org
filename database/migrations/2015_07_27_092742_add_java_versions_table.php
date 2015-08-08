@@ -16,7 +16,7 @@ class AddJavaVersionsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('java_vendor_id')->unsigned();
-			$table->foreign('java_vendor_id')->references('id')->table('java_vendors')->onDelete('cascade');
+			$table->foreign('java_vendor_id')->references('id')->on('java_vendors')->onDelete('cascade');
 			// FIXME: must be unique per vendor ID
 			$table->string('name', 255);
 			$table->timestamps();

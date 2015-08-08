@@ -9,7 +9,7 @@
 	</tr>
 </thead>
 <tbody>
-@foreach ($testRun['tests'] as $test)
+@foreach ($tests as $test)
 	<tr>
 	<td>{{ $test['name'] }}</td>
 	<td>{{ $test['metadata'] }}</td>
@@ -29,4 +29,4 @@
 </tbody>
 </table>
 
-</div>
+{!! $paginator->render() !!}

@@ -20,15 +20,15 @@ class AddTestRunsTable extends Migration {
 			$table->string('timezone', 50)->nullable();
 			$table->string('platform_encoding', 50)->nullable();
 			$table->integer('user_id')->unsigned();
-			$table->foreign('user_id')->references('id')->table('users')->onDelete('cascade');;
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
 			$table->integer('project_version_id')->unsigned();
-			$table->foreign('project_version_id')->references('id')->table('project_versions')->onDelete('cascade');
+			$table->foreign('project_version_id')->references('id')->on('project_versions')->onDelete('cascade');
 			$table->integer('os_id')->unsigned();
-			$table->foreign('os_id')->references('id')->table('oses')->onDelete('cascade');
+			$table->foreign('os_id')->references('id')->on('oses')->onDelete('cascade');
 			$table->integer('status_id')->unsigned();
-			$table->foreign('status_id')->references('id')->table('statuses')->onDelete('cascade');
+			$table->foreign('status_id')->references('id')->on('statuses')->onDelete('cascade');
 			$table->integer('java_version_id')->unsigned();
-			$table->foreign('java_version_id')->references('id')->table('java_versions')->onDelete('cascade');
+			$table->foreign('java_version_id')->references('id')->on('java_versions')->onDelete('cascade');
 			$table->timestamps();
 		});
 	}

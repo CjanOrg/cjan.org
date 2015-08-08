@@ -1,6 +1,7 @@
 <?php namespace CJAN\Repositories;
 
 use CJAN\Models\TestRun;
+use CJAN\Models\Test;
 
 class DbTestRunsRepository extends DbBaseRepository implements TestRunsRepository {
 
@@ -13,7 +14,7 @@ class DbTestRunsRepository extends DbBaseRepository implements TestRunsRepositor
 	{
 		$testRun = TestRun::
 			where('project_version_id', $versionId)
-			->with(['tests.status', 'javaVersion.javaVendor'])
+			->with(['testsCount', 'javaVersion.javaVendor'])
 			->get();
 		return $testRun->toArray();
 	}
@@ -22,9 +23,17 @@ class DbTestRunsRepository extends DbBaseRepository implements TestRunsRepositor
 	{
 		$testRun = TestRun::
 			where('id', '=', $id)
-			->with(['tests.status', 'javaVersion.javaVendor', 'user'])
+			->with(['javaVersion.javaVendor', 'user'])
 			->firstOrFail();
-		return $testRun->toArray();
+		$tests = Test::
+			where('test_run_id', '=', $testRun['id'])
+			->with(['status'])
+			->paginate(36);
+
+		$testRunArray = $testRun->toArray();
+		$testRunArray['tests'] = $tests->toArray();
+
+		return $testRunArray;
 	}
 
 }

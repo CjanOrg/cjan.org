@@ -2,6 +2,7 @@
 
 use Debugbar;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 use CJAN\Http\Requests;
 use CJAN\Http\Controllers\Controller;
@@ -37,7 +38,12 @@ class ProjectsController extends Controller {
 			return view('projects', $data);
 		}
 		$projects = $this->projectsGateway->findProjectsByLetter($letter);
-		$paginator = new Paginator($projects['data'], $projects['total'], $projects['per_page']);
+		$paginator = new LengthAwarePaginator(
+			$projects['data'], 
+			$projects['total'], 
+			$projects['per_page'], 
+			Paginator::resolveCurrentPage(),
+            ['path' => Paginator::resolveCurrentPath()]);
 		Debugbar::info($projects);
 		$data = array(
 			'letter' => strtoupper($letter),

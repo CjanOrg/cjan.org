@@ -61,4 +61,11 @@ class TestRun extends BaseModel {
 		return $this->hasMany('CJAN\Models\Test');
 	}
 
+	public function testsCount()
+	{
+		return $this->tests()
+			->selectRaw('test_run_id, count(*) as aggregate')
+			->groupBy('test_run_id');
+	}
+
 }

@@ -22,7 +22,7 @@
 				@endif
 				</div>
 
-				{!! $paginator['links'] !!}
+				{!! $paginator->render() !!}
 
 			</div>
 		</div>

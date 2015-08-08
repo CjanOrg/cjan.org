@@ -16,7 +16,7 @@ class AddOsNamesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('os_family_id')->unsigned();
-			$table->foreign('os_family_id')->references('id')->table('os_families')->onDelete('cascade');
+			$table->foreign('os_family_id')->references('id')->on('os_families')->onDelete('cascade');
 			// FIXME: must be unique per os family
 			$table->string('name', 255);
 			$table->timestamps();

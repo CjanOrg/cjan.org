@@ -11,6 +11,8 @@ use CJAN\Gateways\ProjectsGateway;
 use CJAN\Gateways\TestRunsGateway;
 
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class TestRunsController extends Controller {
 
@@ -71,6 +73,15 @@ class TestRunsController extends Controller {
 
 		$testRun = $this->testRunsGateway->findById($id);
 		Debugbar::info($testRun);
+		$tests = $testRun['tests'];
+		Debugbar::info($tests);
+		$paginator = new LengthAwarePaginator(
+			$tests['data'], 
+			$tests['total'], 
+			$tests['per_page'], 
+			Paginator::resolveCurrentPage(),
+            ['path' => Paginator::resolveCurrentPath()]);
+		Debugbar::info($paginator);
 		$letter = strtoupper($project['name'][0]);
 		$user = $testRun['user'];
 		$data = array(
@@ -81,7 +92,9 @@ class TestRunsController extends Controller {
 			'id' => $id,
 			'testRun' => $testRun,
 			'letter' => $letter,
-			'user' => $user
+			'user' => $user,
+			'tests' => $tests['data'],
+			'paginator' => $paginator
 		);
 		return view('test_run', $data);
 	}

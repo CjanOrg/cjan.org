@@ -65,19 +65,17 @@ class VersionsController extends Controller {
 	{
 		$version = $this->versionsGateway->findById($id);
 		Debugbar::info($version);
-		$project = $this->projectsGateway->findById($projectId);
+		$project = $version['project_artifact'];	
 		Debugbar::info($project);
 		$testRuns = $this->testRunsGateway->findByVersionId($version['id']);
 		Debugbar::info($testRuns);
 		$letter = strtoupper($project['name'][0]);
-		$user = Auth::user();
 		$data = array(
 			'id' => $id,
 			'version' => $version,
 			'project' => $project,
 			'testRuns' => $testRuns,
-			'letter' => $letter,
-			'user' => $user
+			'letter' => $letter
 		);
 		return view('version', $data);
 	}
