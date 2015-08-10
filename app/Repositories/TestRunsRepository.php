@@ -4,6 +4,6 @@ interface TestRunsRepository {
 
 	public function findByVersionId($versionId);
 
-	public function findById($id);
+	public function findById($id, $direction);
 
 }

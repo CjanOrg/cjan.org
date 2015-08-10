@@ -1,6 +1,7 @@
 <?php namespace CJAN\Http\Controllers;
 
 use Debugbar;
+use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -8,8 +9,6 @@ use CJAN\Http\Requests;
 use CJAN\Http\Controllers\Controller;
 
 use CJAN\Gateways\ProjectsGateway;
-
-use Illuminate\Http\Request;
 
 class ProjectsController extends Controller {
 

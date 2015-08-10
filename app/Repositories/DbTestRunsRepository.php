@@ -19,7 +19,7 @@ class DbTestRunsRepository extends DbBaseRepository implements TestRunsRepositor
 		return $testRun->toArray();
 	}
 
-	public function findById($id)
+	public function findById($id, $direction)
 	{
 		$testRun = TestRun::
 			where('id', '=', $id)
@@ -28,6 +28,7 @@ class DbTestRunsRepository extends DbBaseRepository implements TestRunsRepositor
 		$tests = Test::
 			where('test_run_id', '=', $testRun['id'])
 			->with(['status'])
+			->orderBy('status_id', $direction)
 			->paginate(36);
 
 		$testRunArray = $testRun->toArray();

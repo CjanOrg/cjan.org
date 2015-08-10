@@ -63,15 +63,28 @@ class TestRunsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($projectId, $versionId, $id)
+	public function show($projectId, $versionId, $id, Request $request)
 	{
+		$w = $request->input('w', /*default*/ self::ASC);
+		if (!$w || strcmp("", trim($w)) === 0 ||  !in_array(trim($w), [self::ASC, self::DESC]) || strcmp(sprintf("%d", self::DESC), trim($w)) === 0)
+		{
+			$w = self::ASC;
+		}
+		else
+		{
+			$w = self::DESC;
+		}
+
+		//$o = $request->input('o', /* only option*/ 3);
+		$o = 3;
+
 		$version = $this->versionsGateway->findById($versionId);
 		$project = $version['project_artifact'];
 		Debugbar::info($version);
 		// $testRuns = $this->testRunsGateway->findByVersionId($version['id']);
 		// Debugbar::info($testRuns);
 
-		$testRun = $this->testRunsGateway->findById($id);
+		$testRun = $this->testRunsGateway->findById($id, $o, $w);
 		Debugbar::info($testRun);
 		$tests = $testRun['tests'];
 		Debugbar::info($tests);
@@ -80,7 +93,7 @@ class TestRunsController extends Controller {
 			$tests['total'], 
 			$tests['per_page'], 
 			Paginator::resolveCurrentPage(),
-            ['path' => Paginator::resolveCurrentPath()]);
+            ['path' => Paginator::resolveCurrentPath(), 'query' => ["o" => $o, "w" => $w]]);
 		Debugbar::info($paginator);
 		$letter = strtoupper($project['name'][0]);
 		$user = $testRun['user'];
@@ -94,7 +107,8 @@ class TestRunsController extends Controller {
 			'letter' => $letter,
 			'user' => $user,
 			'tests' => $tests['data'],
-			'paginator' => $paginator
+			'paginator' => $paginator,
+			'w' => $w
 		);
 		return view('test_run', $data);
 	}

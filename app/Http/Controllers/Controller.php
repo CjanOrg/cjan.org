@@ -8,4 +8,7 @@ abstract class Controller extends BaseController {
 
 	use DispatchesCommands, ValidatesRequests;
 
+	const ASC = 1;
+	const DESC = 2;
+
 }

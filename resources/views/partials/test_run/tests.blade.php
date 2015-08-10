@@ -5,7 +5,7 @@
 	<tr>
 	<th>Name</th>
 	<th>Metadata</th>
-	<th>Status</th>
+	<th><a href="{{ url('/projects/' . $project['id'] . '/versions/' . $version['id'] . '/testruns/' . $testRun['id'] . '?o=3&w=' . $w) }}">Status</a></th>
 	</tr>
 </thead>
 <tbody>

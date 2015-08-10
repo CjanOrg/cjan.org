@@ -2,6 +2,8 @@
 
 use CJAN\Repositories\TestRunsRepository;
 
+use CJAN\Http\Controllers\Controller;
+
 class TestRunsGateway {
 
 	protected $testRunsRepository;
@@ -16,9 +18,17 @@ class TestRunsGateway {
 		return $this->testRunsRepository->findByVersionId($versionId);
 	}
 
-	public function findById($id)
+	public function findById($id, $o, $w)
 	{
-		return $this->testRunsRepository->findById($id);
+		// $o is not used at the moment, as we are sorting only by status for now. Thus it is
+		// not passed to the repository yet.
+
+		$direction = 'ASC';
+		if ($w === Controller::DESC)
+		{
+			$direction = 'DESC';
+		}
+		return $this->testRunsRepository->findById($id, $direction);
 	}
 
 }
