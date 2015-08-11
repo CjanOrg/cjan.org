@@ -21,6 +21,11 @@
 					
 					<p>Read more about how to <a href="{{ url('getting-started') }}">get started</a>.</p>
 
+					<p>Or for a <strong>TL;DR</strong>:</p>
+
+					<pre>mvn clean test
+mvn org.cjan:test-collector-maven-plugin:0.2:upload -Dtoken=$TOKEN</pre>
+
 					<h4>Projects</h4>
 
 					<p>Choose a project by the first letter of its name, and browse the test results. Projects
