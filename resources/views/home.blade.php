@@ -24,7 +24,7 @@
 					<p>Or for a <strong>TL;DR</strong>:</p>
 
 					<pre>mvn clean test
-mvn org.cjan:test-collector-maven-plugin:0.2:upload -Dtoken=$TOKEN</pre>
+mvn org.cjan:test-collector:upload</pre>
 
 					<h4>Projects</h4>
 
