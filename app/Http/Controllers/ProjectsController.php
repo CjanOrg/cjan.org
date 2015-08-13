@@ -78,14 +78,22 @@ class ProjectsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($id, Request $request)
 	{
-		$project = $this->projectsGateway->findById($id);
+		$snapshotFilter = $request->input('snapshot_filter', FALSE);
+		$versionFilter = $request->input('version_filter', NULL);
+		if (strcmp($snapshotFilter, 'on') == 0)
+		{
+			$snapshotFilter = TRUE;
+		}
+		$project = $this->projectsGateway->findById($id, $snapshotFilter, $versionFilter);
 		Debugbar::info($project);
 		$data = array(
 			'id' => $id,
 			'letter' => strtoupper($project['name'][0]),
-			'project' => $project
+			'project' => $project,
+			'snapshot_filter' => $snapshotFilter,
+			'version_filter' => $versionFilter
 		);
 		return view('project', $data);
 	}

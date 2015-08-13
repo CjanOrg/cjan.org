@@ -17,9 +17,9 @@ class ProjectsGateway {
 		return $this->projectsRepository->findProjectsByLetter($letter);
 	}
 
-	public function findById($id)
+	public function findById($id, $snapshotFilter, $versionFilter)
 	{
-		return $this->projectsRepository->findById($id);
+		return $this->projectsRepository->findById($id, $snapshotFilter, $versionFilter);
 	}
 
 	public function findFeaturedProjects()

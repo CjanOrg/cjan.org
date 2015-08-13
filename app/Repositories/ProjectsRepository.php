@@ -4,7 +4,7 @@ interface ProjectsRepository {
 
 	public function findProjectsByLetter($letter);
 
-	public function findById($id);
+	public function findById($id, $snapshotFilter, $versionFilter);
 
 	public function findFeaturedProjects($limit);
 

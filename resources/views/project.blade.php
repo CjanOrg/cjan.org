@@ -14,6 +14,8 @@
 				<div class="panel-body">
 					<h4>Versions</h4>
 
+					@include ('partials/projects/filter')
+
 					@foreach ($project['project_versions'] as $version)
 						@include ('partials/projects/version')
 					@endforeach

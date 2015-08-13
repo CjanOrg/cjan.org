@@ -27,4 +27,14 @@ class ProjectArtifactId extends BaseModel {
 		return $this->hasMany('CJAN\Models\ProjectVersion');
 	}
 
+	public function projectReleaseVersions()
+	{
+		return $this->hasMany('CJAN\Models\ProjectVersion')->where('snapshot', '=', FALSE);
+	}
+
+	public function projectSnapshotVersions()
+	{
+		return $this->hasMany('CJAN\Models\ProjectVersion')->where('snapshot', '=', TRUE);
+	}
+
 }

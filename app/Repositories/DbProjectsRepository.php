@@ -20,12 +20,22 @@ class DbProjectsRepository extends DbBaseRepository implements ProjectsRepositor
 		return $projectArtifactIdsWithLetter->toArray();
 	}
 
-	public function findById($id)
+	public function findById($id, $snapshotFilter, $versionFilter)
 	{
 		$project = ProjectArtifactId::
 			where('id', $id)
 			->with('projectGroupId')
-			->with('projectVersions')
+			->with(array('projectVersions' => function($query) use ($snapshotFilter, $versionFilter)
+			{
+				if ($snapshotFilter === TRUE)
+				{
+					$query->where('snapshot', '=', !$snapshotFilter);
+				}
+				if (isset($versionFilter) && strcmp("", trim($versionFilter)) !== 0)
+				{
+					$query->where('name', '=', $versionFilter);
+				}
+			}))
 			->first();
 		return $project->toArray();
 	}
