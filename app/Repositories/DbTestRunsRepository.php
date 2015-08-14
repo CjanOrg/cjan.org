@@ -15,6 +15,7 @@ class DbTestRunsRepository extends DbBaseRepository implements TestRunsRepositor
 		$testRun = TestRun::
 			where('project_version_id', $versionId)
 			->with(['testsCount', 'javaVersion.javaVendor', 'user'])
+			->orderBy('status_id', 'desc')
 			->get();
 		return $testRun->toArray();
 	}
