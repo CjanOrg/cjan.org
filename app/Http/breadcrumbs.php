@@ -57,3 +57,10 @@ Breadcrumbs::register('test-run', function($breadcrumbs, $letter, $project, $ver
     $breadcrumbs->push($version['name'], url('/projects/' . $project['id'] . '/versions/' . $version['id']));
     $breadcrumbs->push('Test Run ' . $testRun['id'], url('/projects/' . $project['id'] . '/versions/' . $version['id'] . '/testruns/' . $testRun['id']));
 });
+
+// User
+Breadcrumbs::register('user', function($breadcrumbs, $username)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push(sprintf('User [%s]', $username));
+});

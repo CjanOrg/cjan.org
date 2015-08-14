@@ -27,4 +27,9 @@ class ProjectsGateway {
 		return $this->projectsRepository->findFeaturedProjects(/* limit */ 20);
 	}
 
+	public function countUserProjects($userId)
+	{
+		return $this->projectsRepository->countPerUser($userId);
+	}
+
 }

@@ -8,4 +8,6 @@ interface ProjectsRepository {
 
 	public function findFeaturedProjects($limit);
 
+	public function countPerUser($userId);
+
 }

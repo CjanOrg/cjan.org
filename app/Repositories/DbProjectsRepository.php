@@ -50,4 +50,15 @@ class DbProjectsRepository extends DbBaseRepository implements ProjectsRepositor
 		return $projects->toArray();
 	}
 
+	public function countPerUser($userId)
+	{
+		return ProjectArtifactId::
+			join('project_versions', 'project_artifact_ids.id', '=', 'project_versions.project_artifact_id_id')
+			->join('test_runs', 'project_versions.id', '=', 'test_runs.project_version_id')
+			->where('test_runs.user_id', '=', $userId)
+			->groupBy('project_artifact_ids.id')
+			->get()
+			->count();
+	}
+
 }

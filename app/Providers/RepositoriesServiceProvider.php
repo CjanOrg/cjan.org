@@ -8,6 +8,10 @@ use CJAN\Repositories\VersionsRepository;
 use CJAN\Repositories\DbVersionsRepository;
 use CJAN\Repositories\TestRunsRepository;
 use CJAN\Repositories\DbTestRunsRepository;
+use CJAN\Repositories\UserRepository;
+use CJAN\Repositories\DbUserRepository;
+use CJAN\Repositories\TestRepository;
+use CJAN\Repositories\DbTestRepository;
 
 class RepositoriesServiceProvider extends ServiceProvider {
 
@@ -36,6 +40,12 @@ class RepositoriesServiceProvider extends ServiceProvider {
         });
         $this->app->singleton('CJAN\Repositories\TestRunsRepository', function ($app) {
             return new DbTestRunsRepository();
+        });
+        $this->app->singleton('CJAN\Repositories\UserRepository', function ($app) {
+            return new DbUserRepository();
+        });
+        $this->app->singleton('CJAN\Repositories\TestRepository', function ($app) {
+            return new DbTestRepository();
         });
 	}
 

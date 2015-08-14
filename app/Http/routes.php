@@ -20,6 +20,8 @@ Route::resource('projects', 'ProjectsController');
 Route::resource('projects/{projectId}/versions', 'VersionsController');
 Route::resource('projects/{projectId}/versions/{versionId}/testruns', 'TestRunsController');
 
+Route::resource('u', 'UsersController');
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
