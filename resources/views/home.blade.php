@@ -21,10 +21,23 @@
 					
 					<p>Read more about how to <a href="{{ url('getting-started') }}">get started</a>.</p>
 
-					<p>Or for a <strong>TL;DR</strong>:</p>
+					<p>Or for a <strong>TL;DR</strong>, copy your user token from your profile into your settings.xml:</p>
+
+					<pre>&lt;servers&gt;
+    &lt;server&gt;
+        &lt;id&gt;cjan&lt;/id&gt;
+        &lt;username&gt;kinowkinowkinow&lt;/username&gt;
+    &lt;/server&gt;
+&lt;/servers&gt;</pre>
+
+					<p>Then run:</p>
 
 					<pre>mvn clean test
 mvn org.cjan:test-collector:upload</pre>
+
+					<p>The first command is just to produce some test results locally. This step is required to be run
+					separately as it may fail and not execute any further steps. The second command calls our Maven plug-in
+					to upload your test results to CJAN.org, using the user token.</p>
 
 					<h4>Projects</h4>
 
