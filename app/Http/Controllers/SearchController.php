@@ -9,6 +9,7 @@ class SearchController extends Controller {
 
 	public function index()
 	{
+		// FIXME: call ElasticSearch
 		return view('search');
 	}
 
