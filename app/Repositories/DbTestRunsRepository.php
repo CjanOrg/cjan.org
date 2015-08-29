@@ -1,6 +1,7 @@
 <?php namespace CJAN\Repositories;
 
 use CJAN\Models\TestRun;
+use CJAN\Models\Test;
 
 class DbTestRunsRepository extends DbBaseRepository implements TestRunsRepository {
 
