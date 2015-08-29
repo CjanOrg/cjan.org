@@ -13,9 +13,9 @@ class TestRunsGateway {
 		$this->testRunsRepository = $testRunsRepository;
 	}
 
-	public function findByVersionId($versionId)
+	public function findByVersionId($versionId, $statusIds)
 	{
-		return $this->testRunsRepository->findByVersionId($versionId);
+		return $this->testRunsRepository->findByVersionId($versionId, $statusIds);
 	}
 
 	public function findById($id, $o, $w)

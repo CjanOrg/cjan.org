@@ -12,6 +12,8 @@ use CJAN\Repositories\UserRepository;
 use CJAN\Repositories\DbUserRepository;
 use CJAN\Repositories\TestRepository;
 use CJAN\Repositories\DbTestRepository;
+use CJAN\Repositories\StatusRepository;
+use CJAN\Repositories\DbStatusRepository;
 
 class RepositoriesServiceProvider extends ServiceProvider {
 
@@ -46,6 +48,9 @@ class RepositoriesServiceProvider extends ServiceProvider {
         });
         $this->app->singleton('CJAN\Repositories\TestRepository', function ($app) {
             return new DbTestRepository();
+        });
+        $this->app->singleton('CJAN\Repositories\StatusRepository', function ($app) {
+            return new DbStatusRepository();
         });
 	}
 

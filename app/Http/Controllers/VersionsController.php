@@ -9,6 +9,7 @@ use CJAN\Http\Controllers\Controller;
 use CJAN\Gateways\VersionsGateway;
 use CJAN\Gateways\ProjectsGateway;
 use CJAN\Gateways\TestRunsGateway;
+use CJAN\Gateways\StatusesGateway;
 
 use Illuminate\Http\Request;
 
@@ -16,13 +17,16 @@ class VersionsController extends Controller {
 
 	protected $versionsGateway;
 	protected $projectsGateway;
+	protected $testRunsGateway;
+	protected $statusesGateway;
 
 	public function __construct(VersionsGateway $versionsGateway, ProjectsGateway $projectsGateway, 
-		TestRunsGateway $testRunsGateway)
+		TestRunsGateway $testRunsGateway, StatusesGateway $statusesGateway)
 	{
 		$this->versionsGateway = $versionsGateway;
 		$this->projectsGateway = $projectsGateway;
 		$this->testRunsGateway = $testRunsGateway;
+		$this->statusesGateway = $statusesGateway;
 	}
 
 	/**
@@ -61,13 +65,32 @@ class VersionsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($projectId, $id)
+	public function show($projectId, $id, Request $request)
 	{
+		$statusIdFilter = $request->input('status_filter', NULL);
+		$statusFilter = array();
+		// $versionFilter = $request->input('version_filter', NULL);
+		// if (strcmp($snapshotFilter, 'on') == 0)
+		// {
+		// 	$snapshotFilter = TRUE;
+		// }
 		$version = $this->versionsGateway->findById($id);
 		Debugbar::info($version);
 		$project = $version['project_artifact'];	
 		Debugbar::info($project);
-		$testRuns = $this->testRunsGateway->findByVersionId($version['id']);
+		$statuses = $this->statusesGateway->findAll();
+		if (NULL === $statusIdFilter || !$statusIdFilter)
+		{
+			foreach ($statuses as $status)
+			{
+				$statusFilter[] = $status['id'];
+			}
+		}
+		else
+		{
+			$statusFilter = array($statusIdFilter);
+		}
+		$testRuns = $this->testRunsGateway->findByVersionId($version['id'], $statusFilter);
 		Debugbar::info($testRuns);
 		$letter = strtoupper($project['name'][0]);
 		$data = array(
@@ -75,7 +98,9 @@ class VersionsController extends Controller {
 			'version' => $version,
 			'project' => $project,
 			'testRuns' => $testRuns,
-			'letter' => $letter
+			'letter' => $letter,
+			'statusFilter' => $statusIdFilter,
+			'statuses' => $statuses
 		);
 		return view('version', $data);
 	}
