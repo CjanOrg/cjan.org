@@ -19,6 +19,22 @@
 					application or not. If they know that they will be running the code in a platform with a JVM, locale or
 					timezone with failing tests, they may decide to use another library instead.</p>
 
+					<h4>Projects</h4>
+
+					<p>Choose a project by the first letter of its name, and browse the test results. Projects
+					are created by users when they upload test results. The project metadata is read from build
+					tools like Maven or Ant.</p>
+
+					<h4>Become a tester</h4>
+
+					<p>Several libraries are tested every day by many developers and testers. Not always
+					test results are archived and shared with others. By archiving and sharing your test
+					results, other developers can quickly evaluate the compatibility of libraries against
+					JVM, build tool and operating system versions.</p>
+
+					<p><a href="{{ URL::to('/auth/register') }}">Register</a> to create a new user and use our plug-in with your build
+					tool to submit test results. The information </p>
+
 				</div>
 			</div>
 		</div>

@@ -39,25 +39,9 @@ mvn org.cjan:test-collector:upload</pre>
 					separately as it may fail and not execute any further steps. The second command calls our Maven plug-in
 					to upload your test results to CJAN.org, using the user token.</p>
 
-					<h4>Projects</h4>
-
-					<p>Choose a project by the first letter of its name, and browse the test results. Projects
-					are created by users when they upload test results. The project metadata is read from build
-					tools like Maven or Ant.</p>
-
-					<h4>Become a tester</h4>
-
-					<p>Several libraries are tested every day by many developers and testers. Not always
-					test results are archived and shared with others. By archiving and sharing your test
-					results, other developers can quickly evaluate the compatibility of libraries against
-					JVM, build tool and operating system versions.</p>
-
-					<p><a href="{{ URL::to('/auth/register') }}">Register</a> to create a new user and use our plug-in with your build
-					tool to submit test results. The information </p>
-
 					<h4>Contributions</h4>
 
-					<p>It is an Open Source project, licensed under the MIT License. The
+					<p>CJAN.org is an Open Source project, licensed under the MIT License. The
 					<a href="https://github.com/CjanOrg/cjan.org">code</a> is hosted at GitHub. 
 					<a href="https://github.com/CjanOrg/CJAN/wiki/Roadmap">Contributions</a> are always
 					welcome!</p>
