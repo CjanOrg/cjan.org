@@ -37,7 +37,10 @@ class UploadController extends Controller {
 		$user = User::where('access_token', '=', $token)->first();
 		if (NULL == $user)
 		{
-			abort(403, 'Unauthorized action.');
+			//abort(403, 'Unauthorized action.');
+			Log::warning(sprintf("Invalid access token from %s - %s", $ip, $token));
+			return (new Response(array('message' => 'CJAN.org says: Invalid API key, sorry.'), 403))
+	            	->header('Content-Type', 'application/json');
 		}
 
 		//Log::debug(array('ip' => $ip, 'json' => $json, 'user_id' => $user->id));
@@ -128,13 +131,22 @@ class UploadController extends Controller {
 
 				DB::commit();
 
-				return (new Response(array('test_run' => $testRun->id), 200))
+				return (new Response(array(
+						//'test_run' => $testRun->id,
+						'message' => 'CJAN.org says: Tests uploaded and stored in CJAN.org successfully! Thank you!'
+					), 200))
 	            	->header('Content-Type', 'application/json');
 	        } catch (Exception $e) {
 	        	DB::rollback();
 	        	Log::error((string) $e);
 	        	Log::warning("Rolling back transaction: " . $e->getMessage());
-	        	return (new Response(array('error' => $e->getMessage()), 500))
+	        	return (
+	        		new Response(
+	        			array(
+	        				'message' => sprintf('CJAN.org says: Server internal error: %s', $e->getMessage())
+	        			), 
+	        		500)
+	        	)
 	              ->header('Content-Type', 'application/json');
 	        }
 		}
