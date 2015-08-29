@@ -26,7 +26,7 @@
 					<pre>&lt;servers&gt;
     &lt;server&gt;
         &lt;id&gt;cjan&lt;/id&gt;
-        &lt;username&gt;kinowkinowkinow&lt;/username&gt;
+        &lt;username&gt;$YOUR_API_KEY&lt;/username&gt;
     &lt;/server&gt;
 &lt;/servers&gt;</pre>
 
