@@ -18,7 +18,12 @@ composer install
 
 @task('migrate')
 cd /var/www/cjan.org/public_html
-php artisan migrate --seed
+php artisan migrate --force
+@endtask
+
+@task('seed')
+cd /var/www/cjan.org/public_html
+php artisan db:seed
 @endtask
 
 @task('fix-permissions')
