@@ -6,4 +6,6 @@ interface TestRunsRepository {
 
 	public function findById($id, $direction);
 
+	public function findByUserId($userId);
+
 }

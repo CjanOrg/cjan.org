@@ -39,4 +39,14 @@ class DbTestRunsRepository extends DbBaseRepository implements TestRunsRepositor
 		return $testRunArray;
 	}
 
+	public function findByUserId($userId)
+	{
+		$testRuns = TestRun::
+			where('user_id', '=', $userId)
+			->with(['javaVersion.javaVendor', 'user', 'tests'])
+			->paginate(12);
+
+		return $testRuns->toArray();
+	}
+
 }

@@ -1,6 +1,8 @@
 <?php namespace CJAN\Http\Controllers;
 
 use Debugbar;
+use Auth;
+
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -11,6 +13,7 @@ use CJAN\Http\Controllers\Controller;
 use CJAN\Gateways\UsersGateway;
 use CJAN\Gateways\ProjectsGateway;
 use CJAN\Gateways\TestsGateway;
+use CJAN\Gateways\TestRunsGateway;
 
 class UsersController extends Controller {
 
@@ -18,11 +21,13 @@ class UsersController extends Controller {
 	protected $projectsGateway;
 	protected $testsGateway;
 
-	public function __construct(UsersGateway $usersGateway, ProjectsGateway $projectsGateway, TestsGateway $testsGateway)
+	public function __construct(UsersGateway $usersGateway, ProjectsGateway $projectsGateway, TestsGateway $testsGateway,
+		TestRunsGateway $testRunsGateway)
 	{
 		$this->usersGateway = $usersGateway;
 		$this->projectsGateway = $projectsGateway;
 		$this->testsGateway = $testsGateway;
+		$this->testRunsGateway = $testRunsGateway;
 	}
 
 	/**
@@ -108,6 +113,33 @@ class UsersController extends Controller {
 	public function destroy($id)
 	{
 		//
+	}
+
+	public function showTests($userId)
+	{
+		$user = Auth::user();
+		// using theuser so we don't confuse with a session-logged-in user
+		$theuser = $this->usersGateway->findByUserName($userId);
+		Debugbar::info($theuser);
+		$testRuns = $this->testRunsGateway->findByUserId($theuser['id']);
+		Debugbar::info($testRuns);
+		
+		$paginator = new LengthAwarePaginator(
+			$testRuns['data'], 
+			$testRuns['total'], 
+			$testRuns['per_page'], 
+			Paginator::resolveCurrentPage(),
+            ['path' => Paginator::resolveCurrentPath()]);
+
+		$data = array(
+			'user_id' => $userId,
+			'theuser' => $theuser,
+			'projects_count' => 0,
+			'tests_count' => 0,
+			'test_runs' => $testRuns['data'],
+			'paginator' => $paginator
+		);
+		return view('test_runs_by_user', $data);
 	}
 
 }

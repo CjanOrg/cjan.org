@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('breadcrumbs', Breadcrumbs::render('user', $id))
+@section('breadcrumbs', Breadcrumbs::render('test-runs-user', $user_id))
 
 @section('content')
 <div class="container">
@@ -12,8 +12,14 @@
 				</div>
 
 				<div class="panel-body">
-					<p>Tested {{ $projects_count }} projects, <a href="{{ url('/u/' . $theuser['name'] . '/tests/') }}">{{ $tests_count }} tests</a></p>
+					<h4>Tests</h4>
+
+					@foreach ($test_runs as $testRun)
+					@include('partials/user/test_run')
+					@endforeach
 				</div>
+
+				{!! $paginator->render() !!}
 
 			</div>
 		</div>

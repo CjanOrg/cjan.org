@@ -21,7 +21,7 @@ Route::resource('projects/{projectId}/versions', 'VersionsController');
 Route::resource('projects/{projectId}/versions/{versionId}/testruns', 'TestRunsController');
 
 Route::resource('u', 'UsersController');
-Route::get('u/{user}/tests', 'UsersController@show');
+Route::get('u/{user}/tests', 'UsersController@showTests');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

@@ -1,7 +1,6 @@
 <?php namespace CJAN\Http\Controllers;
 
 use Debugbar;
-use Auth;
 
 use CJAN\Http\Requests;
 use CJAN\Http\Controllers\Controller;

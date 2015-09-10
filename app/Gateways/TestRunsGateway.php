@@ -31,4 +31,9 @@ class TestRunsGateway {
 		return $this->testRunsRepository->findById($id, $direction);
 	}
 
+	public function findByUserId($userId)
+	{
+		return $this->testRunsRepository->findByUserId($userId);
+	}
+
 }

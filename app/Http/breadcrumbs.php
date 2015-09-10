@@ -64,3 +64,10 @@ Breadcrumbs::register('user', function($breadcrumbs, $username)
     $breadcrumbs->parent('home');
     $breadcrumbs->push(sprintf('User [%s]', $username));
 });
+
+// Test Runs by User
+Breadcrumbs::register('test-runs-user', function($breadcrumbs, $username) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push(sprintf('User [%s]', $username), url('/u/' . $username));
+    $breadcrumbs->push(sprintf('Tests'));
+});
