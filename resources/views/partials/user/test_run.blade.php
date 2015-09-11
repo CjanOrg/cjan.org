@@ -2,6 +2,13 @@
 
 <table class='table table-bordered table-striped'>
 	<tr>
+		<th colspan='2'>
+			<h4 class='text-center'>
+				{{ $testRun['project_version']['project_artifact']['name'] }}-{{ $testRun['project_version']['name'] }}
+			</h4>
+		</th>
+	</tr>
+	<tr>
 		<th>Status</th>
 		<td>
 			@if ($testRun['status_id'] == 1)

@@ -12,7 +12,7 @@
 				</div>
 
 				<div class="panel-body">
-					<h4>Tests</h4>
+					<h4>Test Runs</h4>
 
 					@foreach ($test_runs as $testRun)
 					@include('partials/user/test_run')

@@ -43,7 +43,7 @@ class DbTestRunsRepository extends DbBaseRepository implements TestRunsRepositor
 	{
 		$testRuns = TestRun::
 			where('user_id', '=', $userId)
-			->with(['javaVersion.javaVendor', 'user', 'tests'])
+			->with(['javaVersion.javaVendor', 'user', 'tests', 'projectVersion.projectArtifact'])
 			->orderBy('created_at', 'DESC')
 			->paginate(12);
 
