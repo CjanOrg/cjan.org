@@ -2,6 +2,7 @@
 
 use Debugbar;
 use Auth;
+use App;
 
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
@@ -140,6 +141,25 @@ class UsersController extends Controller {
 			'paginator' => $paginator
 		);
 		return view('test_runs_by_user', $data);
+	}
+
+	public function confirmDeleteTestRun($userId, $testRunId)
+	{
+		$user = Auth::user();
+		$theuser = $this->usersGateway->findByUserName($userId);
+		$testRun = $this->testRunsGateway->findById($testRunId, 3, self::ASC);
+
+		if ($testRun['user_id'] != $user['id'])
+		{
+			App::abort(403, 'Unauthorized action.');
+		}
+		$data = array(
+			'user_id' => $userId,
+			'test_run_id' => $testRunId,
+			'theuser' => $theuser,
+			'test_run' => $testRun
+		);
+		return view('confirm_delete_user_test_run', $data);
 	}
 
 }

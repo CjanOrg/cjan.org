@@ -71,3 +71,11 @@ Breadcrumbs::register('test-runs-user', function($breadcrumbs, $username) {
     $breadcrumbs->push(sprintf('User [%s]', $username), url('/u/' . $username));
     $breadcrumbs->push(sprintf('Tests'));
 });
+
+// Confirm delete test runs by user
+Breadcrumbs::register('test-runs-user-confirm', function($breadcrumbs, $username, $testRunId) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push(sprintf('User [%s]', $username), url('/u/' . $username));
+    $breadcrumbs->push(sprintf('Test', $username), url('/u/' . $username . '/tests/'));
+    $breadcrumbs->push(sprintf('Delete'));
+});

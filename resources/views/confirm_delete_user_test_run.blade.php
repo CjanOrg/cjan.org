@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('breadcrumbs', Breadcrumbs::render('test-runs-user', $user_id))
+@section('breadcrumbs', Breadcrumbs::render('test-runs-user-confirm', $user_id, $test_run['id']))
 
 @section('content')
 <div class="container">
@@ -12,14 +12,12 @@
 				</div>
 
 				<div class="panel-body">
-					<h4>Tests</h4>
+					<p>Confirm to delete?</p>
 
-					@foreach ($test_runs as $testRun)
-					@include('partials/user/test_run')
-					@endforeach
+					<p>
+						
+					</p>
 				</div>
-
-				{!! $paginator->render() !!}
 
 			</div>
 		</div>

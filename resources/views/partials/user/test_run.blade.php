@@ -52,6 +52,13 @@
 			{{ $testRun['created_at'] }}</a>
 		</td>
 	</tr>
+	@if ($theuser['name'] == Auth::user()->name)
+	<tr>
+		<td colspan="2" class='text-center'>
+			<a href="{{ url('/u/' . $theuser['name'] . '/tests/' . $testRun['id'] . '/delete') }}" class='delete_test_run btn btn-danger'><i class='glyphicon glyphicon-remove'></i> Delete</a>
+		</td>
+	</tr>
+	@endif
 </table>
 
 </div>
