@@ -232,6 +232,16 @@
 		</div>
 	</div>
 
+	@if(Session::has('message'))
+	<div class='container'>
+		<div class='row'>
+			<div class='col-md-12'>
+				<p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+			</div>
+		</div>
+	</div>
+	@endif
+
 	@yield('content')
 
 	<!-- Scripts -->

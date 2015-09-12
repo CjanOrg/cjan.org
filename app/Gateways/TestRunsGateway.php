@@ -36,4 +36,9 @@ class TestRunsGateway {
 		return $this->testRunsRepository->findByUserId($userId);
 	}
 
+	public function deleteById($id)
+	{
+		return $this->testRunsRepository->deleteById($id);
+	}
+
 }

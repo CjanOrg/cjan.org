@@ -151,6 +151,11 @@ return [
 		 */
 		'DaveJamesMiller\Breadcrumbs\ServiceProvider',
 
+		/**
+		 * Old behavior of forms
+		 */
+		'Illuminate\Html\HtmlServiceProvider',
+
 		/*
 		 * Application Service Providers...
 		 */
@@ -213,6 +218,9 @@ return [
 		'Debugbar' => 'Barryvdh\Debugbar\Facade',
 
 		'Breadcrumbs' => 'DaveJamesMiller\Breadcrumbs\Facade',
+
+		'Form'=> 'Illuminate\Html\FormFacade', 
+		'HTML'=> 'Illuminate\Html\HtmlFacade'
 
 	],
 

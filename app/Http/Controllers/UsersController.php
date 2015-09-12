@@ -3,6 +3,8 @@
 use Debugbar;
 use Auth;
 use App;
+use Exception;
+use Log;
 
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
@@ -160,6 +162,28 @@ class UsersController extends Controller {
 			'test_run' => $testRun
 		);
 		return view('confirm_delete_user_test_run', $data);
+	}
+
+	public function deleteTestRun($userId, $testRunId, Request $request)
+	{
+		$user = Auth::user();
+		$theuser = $this->usersGateway->findByUserName($userId);
+		$testRun = $this->testRunsGateway->findById($testRunId, 3, self::ASC);
+
+		if ($testRun['user_id'] != $user['id'])
+		{
+			App::abort(403, 'Unauthorized action.');
+		}
+
+		$redirectTo = $request->input('redirect');
+
+		try {
+			$this->testRunsGateway->deleteById($testRunId);
+			return redirect($redirectTo)->with('message', 'Test deleted!');
+		} catch (Exception $e) {
+			Log::warning($e->getMessage(), e);
+			return redirect($redirectTo)->with('message', 'Failed to delete the test case.');
+		}
 	}
 
 }

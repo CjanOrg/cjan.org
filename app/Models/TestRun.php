@@ -1,6 +1,10 @@
 <?php namespace CJAN\Models;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 class TestRun extends BaseModel {
+
+	use SoftDeletes;
 
 	protected $table = 'test_runs';
 

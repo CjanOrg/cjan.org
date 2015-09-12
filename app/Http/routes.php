@@ -21,8 +21,11 @@ Route::resource('projects/{projectId}/versions', 'VersionsController');
 Route::resource('projects/{projectId}/versions/{versionId}/testruns', 'TestRunsController');
 
 Route::resource('u', 'UsersController');
+
+// Test runs and tests 
 Route::get('u/{user}/tests', 'UsersController@showTests');
 Route::get('u/{user}/tests/{testId}/delete', 'UsersController@confirmDeleteTestRun');
+Route::post('u/{user}/tests/{testId}/delete', 'UsersController@deleteTestRun');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

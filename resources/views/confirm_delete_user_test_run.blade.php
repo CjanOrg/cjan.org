@@ -14,9 +14,22 @@
 				<div class="panel-body">
 					<p>Confirm to delete?</p>
 
-					<p>
-						
-					</p>
+					<div class="btn-group" role="group" aria-label="confirm-delete-buttons-yes-no">
+						{!! Form::open(
+								array(
+									'url' => url(
+										sprintf('/u/%s/tests/%d/delete', $theuser['name'], $test_run['id'])
+									), 
+									'method' => 'POST', 
+									'class' => 'form-inline'
+								)
+							)
+						!!}
+							<input type='hidden' name='redirect' value='{{ URL::previous() }}'>
+							<input type="submit" class="btn btn-danger" value="Delete">
+							<a href="{{ URL::previous() }}" class="btn ">Cancel</a>
+						{!! Form::close() !!}
+					</div>
 				</div>
 
 			</div>

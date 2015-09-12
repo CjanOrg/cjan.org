@@ -50,4 +50,9 @@ class DbTestRunsRepository extends DbBaseRepository implements TestRunsRepositor
 		return $testRuns->toArray();
 	}
 
+	public function deleteById($id)
+	{
+		TestRun::destroy($id);
+	}
+
 }

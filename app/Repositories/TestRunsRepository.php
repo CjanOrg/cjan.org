@@ -8,4 +8,6 @@ interface TestRunsRepository {
 
 	public function findByUserId($userId);
 
+	public function deleteById($id);
+
 }
