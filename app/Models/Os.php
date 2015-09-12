@@ -29,4 +29,9 @@ class Os extends BaseModel {
 		return $this->belongsTo('CJAN\Models\OsArch');
 	}
 
+	public function testRuns()
+	{
+		return $this->hasMany('CJAN\Models\TestRun');
+	}
+
 }
