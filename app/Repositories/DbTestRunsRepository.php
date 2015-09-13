@@ -16,7 +16,7 @@ class DbTestRunsRepository extends DbBaseRepository implements TestRunsRepositor
 	{
 		$testRun = TestRun::
 			select('test_runs.*')
-			->join(DB::raw(
+			->leftJoin(DB::raw(
 				"(SELECT tr.*, max(tr.updated_at) max_updated_at " .
     			"from test_runs tr " .
     			"GROUP BY " .
