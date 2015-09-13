@@ -1,5 +1,7 @@
 <?php namespace CJAN\Repositories;
 
+use DB;
+
 use CJAN\Models\TestRun;
 use CJAN\Models\Test;
 
@@ -13,12 +15,28 @@ class DbTestRunsRepository extends DbBaseRepository implements TestRunsRepositor
 	public function findByVersionId($versionId, $statusIds)
 	{
 		$testRun = TestRun::
-			where('project_version_id', $versionId)
-			->whereIn('status_id', $statusIds)
+			select('test_runs.*')
+			->join(DB::raw(
+				"(SELECT tr.*, max(tr.updated_at) max_updated_at " .
+    			"from test_runs tr " .
+    			"GROUP BY " .
+    			"tr.user_id, " .
+				"tr.java_version_id, " .
+				"tr.timezone, " .
+				"tr.locale, " .
+				"tr.platform_encoding, ".
+				"tr.status_id) tr "
+			), function($join) {
+				$join->on('test_runs.updated_at', '=', 'tr.max_updated_at');
+				$join->on('test_runs.user_id', '=', 'tr.user_id');
+				$join->on('test_runs.java_version_id', '=', 'tr.java_version_id');
+				$join->on('test_runs.timezone', '=', 'tr.timezone');
+				$join->on('test_runs.locale', '=', 'tr.locale');
+				$join->on('test_runs.platform_encoding', '=', 'tr.platform_encoding');
+			})
+			->where('test_runs.project_version_id', $versionId)
+			->whereIn('test_runs.status_id', $statusIds)
 			->with(['testsCount', 'javaVersion.javaVendor', 'user'])
-			->groupBy(array('java_version_id', 'timezone', 'locale', 'platform_encoding', 'updated_at'))
-			->orderBy('updated_at', 'desc')
-			->limit(1)
 			->get();
 		return $testRun->toArray();
 	}
