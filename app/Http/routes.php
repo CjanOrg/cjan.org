@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'HomeController@index');
+Route::get('/home', 'HomeController@index');
 Route::get('getting-started', 'GettingStartedController@index');
 
 Route::get('projects/search', 'SearchController@index');
