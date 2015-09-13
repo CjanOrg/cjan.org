@@ -54,7 +54,7 @@ return array(
 	'menu' => array(
 		'User Administration' => array('users', 'groups'),
 		'Projects' => array('projects_group_ids', 'project_artifact_ids', 'project_versions'),
-		'Tests' => array('statuses', 'test_runs')
+		'Tests' => array('statuses', 'test_runs', 'tests')
 	),
 
 	/**
