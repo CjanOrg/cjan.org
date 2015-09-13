@@ -1,3 +1,15 @@
 .version-filter {
 	
 }
+
+.project {
+
+}
+
+.project table > tbody > tr > td {
+	word-wrap: break-word;
+    -moz-hyphens:auto; 
+    -webkit-hyphens:auto; 
+    -o-hyphens:auto; 
+    hyphens:auto; 
+}

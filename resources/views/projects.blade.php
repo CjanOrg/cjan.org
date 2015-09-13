@@ -15,8 +15,33 @@
 				@if (isset($letter))
 					<p><strong>Featured projects</strong></p>
 					@if (isset($projects) and !empty($projects))
+						<?php 
+							$i = 0; 
+							$row = FALSE; 
+						?>
 						@foreach ($projects as $project)
-						@include('partials/projects/view')
+							<?php 
+								if($i % 4 == 0) {
+									$row = TRUE;
+								}
+							?>
+							<?php 
+								if($row === TRUE) {
+									$row = FALSE;
+							?>
+							<div class='row'>
+							<?php 
+								} 
+							?>
+							@include('partials/projects/view')
+							<?php 
+								$i+= 1;
+								if($i % 4 == 0) {
+							?>
+							</div>
+							<?php 
+								} 
+							?>
 						@endforeach
 					@else
 					<p>Wow! We still don't have any projects starting with {{ $letter }}. Read our <a href="{{ url('/getting-started') }}">Getting Started</a> guide and contribute with your tests.</p>
