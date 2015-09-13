@@ -4,7 +4,7 @@ class Os extends BaseModel {
 
 	protected $table = 'oses';
 
-	protected $fillable = ['version', 'name', 'os_name_id', 'os_arch_id'];
+	protected $fillable = ['version', 'os_name_id', 'os_arch_id'];
 
 	protected static $_rules = array(
 		"create" => array(

@@ -43,8 +43,13 @@ return array(
 			'select' => '(:table).name'
 		),
 		'os_id' => array(
-			'title' => 'Operating System',
+			'title' => 'Operating System ID',
 			'relationship' => 'os',
+			'select' => '(:table).id'
+		),
+		'status_id' => array(
+			'title' => 'Status',
+			'relationship' => 'status',
 			'select' => '(:table).name'
 		),
 		'tests' => array(
@@ -73,7 +78,32 @@ return array(
 		'platform_encoding' => array(
 			'title' => 'Platform Encoding',
 			'type' => 'text'
-		)
+		),
+		'user' => array(
+			'title' => 'User',
+			'type' => 'relationship',
+			'name_field' => 'name'
+		),
+		'javaVersion' => array(
+			'title' => 'Java Version',
+			'type' => 'relationship',
+			'name_field' => 'name'
+		),
+		'projectVersion' => array(
+			'title' => 'Project Version',
+			'type' => 'relationship',
+			'name_field' => 'name'
+		),
+		'os' => array(
+			'title' => 'Operating System ID',
+			'type' => 'relationship',
+			'name_field' => 'id'
+		),
+		'status' => array(
+			'title' => 'Status',
+			'type' => 'relationship',
+			'name_field' => 'name'
+		),
 	),
 	/**
 	 * The editable fields
@@ -95,10 +125,35 @@ return array(
 			'title' => 'Platform Encoding',
 			'type' => 'text'
 		),
-		'project_artifact_id_id' => array(
+		'projectVersion' => array(
+			'title' => 'Project Version',
+			'type' => 'relationship',
+			'name_field' => 'name'
+		),
+		'user' => array(
 			'title' => 'Project Artifact ID',
-			'relationship' => 'projectArtifact',
-			'select' => '(:table).name'
+			'type' => 'relationship',
+			'name_field' => 'name'
+		),
+		'javaVersion' => array(
+			'title' => 'Java Version',
+			'type' => 'relationship',
+			'name_field' => 'name'
+		),
+		'projectVersion' => array(
+			'title' => 'Project Version',
+			'type' => 'relationship',
+			'name_field' => 'name'
+		),
+		'os' => array(
+			'title' => 'Operating System ID',
+			'type' => 'relationship',
+			'name_field' => 'id'
+		),
+		'status' => array(
+			'title' => 'Status',
+			'type' => 'relationship',
+			'name_field' => 'name'
 		)
 	),
 );
