@@ -42,7 +42,7 @@
 	<tr>
 		<th>Created</th>
 		<td>
-			{{ $testRun['created_at'] }} / <a href="{{ url() }}">{{ $user['name'] }}</a>
+			{{ $testRun['created_at'] }} / <a href="{{ url('/u/'.$testRun['user']['name']) }}">{{ $testRun['user']['name'] }}</a>
 		</td>
 	</tr>
 </table>
