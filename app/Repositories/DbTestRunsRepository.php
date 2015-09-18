@@ -36,6 +36,16 @@ class DbTestRunsRepository extends DbBaseRepository implements TestRunsRepositor
 			})
 			->where('test_runs.project_version_id', $versionId)
 			->whereIn('test_runs.status_id', $statusIds)
+			->groupBy(
+				array(
+					'test_runs.user_id',
+					'test_runs.java_version_id',
+					'test_runs.timezone',
+					'test_runs.locale',
+					'test_runs.platform_encoding',
+					'test_runs.status_id'
+				)
+			)
 			->with(['testsCount', 'javaVersion.javaVendor', 'user'])
 			->get();
 		return $testRun->toArray();
