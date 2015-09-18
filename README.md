@@ -14,7 +14,7 @@ docker start cjan-mysql
 
 ### Running the test ElasticSearch
 
-docker run -p 9200:9200 --name cjan-es -d elasticsearch
+docker run -p 9200:9200 --name cjan-es -d elasticsearch -Des.logger.level=DEBUG
 
 docker start cjan-es
 
