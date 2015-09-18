@@ -1,5 +1,7 @@
 <?php namespace CJAN\Http\Controllers;
 
+use Es;
+
 class SearchController extends Controller {
 
 	public function __construct()

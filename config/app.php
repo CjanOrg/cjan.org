@@ -157,6 +157,11 @@ return [
 		'Illuminate\Html\HtmlServiceProvider',
 
 		/*
+		 *
+		 */
+		'Shift31\LaravelElasticsearch\ElasticsearchServiceProvider',
+
+		/*
 		 * Application Service Providers...
 		 */
 		'CJAN\Providers\AppServiceProvider',

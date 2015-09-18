@@ -10,7 +10,8 @@
 		"frozennode/administrator": "5.*",
 		"barryvdh/laravel-debugbar": "^2.0",
 		"davejamesmiller/laravel-breadcrumbs": "^3.0",
-		"guzzlehttp/guzzle": "~5.3"
+		"guzzlehttp/guzzle": "~5.3",
+		"shift31/laravel-elasticsearch": "~1.0"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
