@@ -214,7 +214,7 @@
 			<div class='col-md-2'>
 			  <form action="{{ url('/projects/search') }}" class='form form-inline' role="search" method="get">
 		        <div class="input-group">
-			      <input name="q" type="text" class="form-control" placeholder="Search">
+			      <input name="q" type="text" class="form-control" placeholder="Search" value="{{{ $q or '' }}}">
 		          <span class="input-group-btn">
 		            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search color-white" aria-label="Go"></i></button>
                   </span>

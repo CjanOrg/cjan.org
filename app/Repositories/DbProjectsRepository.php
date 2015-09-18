@@ -61,4 +61,12 @@ class DbProjectsRepository extends DbBaseRepository implements ProjectsRepositor
 			->count();
 	}
 
+	public function findAllNoPagination($with = array())
+	{
+		$projects = ProjectArtifactId::
+			with($with)
+			->get();
+		return $projects->toArray();
+	}
+
 }

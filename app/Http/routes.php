@@ -16,6 +16,7 @@ Route::get('/home', 'HomeController@index');
 Route::get('getting-started', 'GettingStartedController@index');
 
 Route::get('projects/search', 'SearchController@index');
+Route::get('recreateSearchIndex', 'SearchController@recreateSearchIndex');
 
 Route::resource('projects', 'ProjectsController');
 Route::resource('projects/{projectId}/versions', 'VersionsController');

@@ -32,4 +32,9 @@ class ProjectsGateway {
 		return $this->projectsRepository->countPerUser($userId);
 	}
 
+	public function findAllNoPagination($with = array())
+	{
+		return $this->projectsRepository->findAllNoPagination($with);
+	}
+
 }

@@ -10,4 +10,6 @@ interface ProjectsRepository {
 
 	public function countPerUser($userId);
 
+	public function findAllNoPagination($with);
+
 }
